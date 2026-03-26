@@ -1,0 +1,21 @@
+CRYSTALGUESSER COMPREHENSIVE TEST RESULTS
+================================================================================
+
+NaCl                           | SUCCESS | N/A
+Fe                             | SUCCESS | N/A
+SrTiO3                         | SUCCESS | N/A
+MgO                            | SUCCESS | N/A
+GaAs                           | SUCCESS | N/A
+FeNi                           | SUCCESS | N/A
+CuZn                           | SUCCESS | N/A
+TiC                            | SUCCESS | N/A
+NbN                            | SUCCESS | N/A
+WC                             | SUCCESS | N/A
+La0.5Sr0.5MnO3                 | SUCCESS | N/A
+LaMn0.75Fe0.25O3               | SUCCESS | N/A
+La0.5Ca0.5Mn0.8Fe0.2O3         | SUCCESS | N/A
+SrTi0.5Zr0.5O3                 | SUCCESS | N/A
+Ba0.5Sr0.5TiO3                 | SUCCESS | N/A
+Fe0.8C0.1Mn0.05Cr0.03Ni0.02    | SUCCESS | N/A
+Fe0.75C0.15Si0.05Mn0.03Cr0.02  | SUCCESS | N/A
+Fe0.7C0.2Mn0.05Ni0.03Mo0.02    | SUCCESS | N/A

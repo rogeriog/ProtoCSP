@@ -1,0 +1,270 @@
+CRYSTALGUESSER COMPREHENSIVE DIAGNOSTIC TEST SUITE
+Testing increasingly complex compositions with failure analysis...
+================================================================================
+TESTING SIMPLE BASELINE STRUCTURES
+================================================================================
+Using library database: lemat_formula_indexed/
+--------------------------------------------------------------------------------
+Testing: NaCl                          /gpfs/home/acad/ucl-modl/rgouvea/miniconda3/lib/python3.12/site-packages/pymatgen/core/composition.py:1349: UserWarning: No Pauling electronegativity for Ar. Setting to NaN. This has no physical meaning, and is mainly done to avoid errors caused by the code expecting a float.
+  syms: list[str] = sorted(sym_amt, key=lambda x: [get_el_sp(x).X, x])
+[DEBUG] Starting guess for NaCl (Anon: AB)
+[DEBUG] Loaded 90118 entries for AB in 3.9683s
+[DEBUG] Exact string match failed. Trying robust chemical comparison...
+[DEBUG] Strategy 0: Found 135 exact matches.
+[DEBUG] Total time: 7.7383s
+[DEBUG] Finalizing 6 candidates...
+[DEBUG] Returning top 3 unique candidates.
+[SUCCESS] 3 candidates (7.80s)
+      [1] NaCl
+          Source: oqmd-9183247
+          Energy: -3.388 eV/atom
+          Volume: 358.5 A^3
+          SpaceG: Fm-3m
+      [2] NaCl
+          Source: oqmd-3711479
+          Energy: -3.388 eV/atom
+          Volume: 44.9 A^3
+          SpaceG: Fm-3m
+      [3] NaCl
+          Source: oqmd-9184061
+          Energy: -3.387 eV/atom
+          Volume: 403.3 A^3
+          SpaceG: P31m
+Testing: Fe                            [DEBUG] Starting guess for Fe (Anon: A)
+[DEBUG] Loaded 2946 entries for A in 0.1154s
+[DEBUG] Strategy 0: Found 36 exact matches.
+[DEBUG] Total time: 0.1166s
+[DEBUG] Finalizing 6 candidates...
+[DEBUG] Returning top 3 unique candidates.
+[SUCCESS] 3 candidates (0.15s)
+      [1] Fe
+          Source: mp-1271068
+          Energy: -8.403 eV/atom
+          Volume: 76.6 A^3
+          SpaceG: Fmmm
+      [2] Fe
+          Source: mp-1271128
+          Energy: -8.375 eV/atom
+          Volume: 38.3 A^3
+          SpaceG: Fmmm
+      [3] Fe
+          Source: agm002149569
+          Energy: -8.350 eV/atom
+          Volume: 57.5 A^3
+          SpaceG: R-3m
+Testing: SrTiO3                        [DEBUG] Starting guess for SrTiO3 (Anon: ABC3)
+[DEBUG] Loaded 287563 entries for ABC3 in 9.3241s
+[DEBUG] Exact string match failed. Trying robust chemical comparison...
+[DEBUG] Strategy 0: Found 28 exact matches.
+[DEBUG] Total time: 22.0172s
+[DEBUG] Finalizing 6 candidates...
+[DEBUG] Returning top 3 unique candidates.
+[SUCCESS] 3 candidates (22.04s)
+      [1] SrTiO3
+          Source: oqmd-9181828
+          Energy: -7.944 eV/atom
+          Volume: 120.2 A^3
+          SpaceG: R-3
+      [2] SrTiO3
+          Source: oqmd-2612191
+          Energy: -7.944 eV/atom
+          Volume: 120.0 A^3
+          SpaceG: R-3c
+      [3] SrTiO3
+          Source: oqmd-2005719
+          Energy: -7.944 eV/atom
+          Volume: 240.3 A^3
+          SpaceG: Pnma
+Testing: MgO                           [DEBUG] Starting guess for MgO (Anon: AB)
+[DEBUG] Loaded 90118 entries for AB in 0.0000s
+[DEBUG] Strategy 0: Found 105 exact matches.
+[DEBUG] Total time: 0.1421s
+[DEBUG] Finalizing 6 candidates...
+[DEBUG] Returning top 3 unique candidates.
+[SUCCESS] 3 candidates (0.18s)
+      [1] MgO
+          Source: oqmd-7929184
+          Energy: -5.979 eV/atom
+          Volume: 18.5 A^3
+          SpaceG: I4/mmm
+      [2] MgO
+          Source: oqmd-8875561
+          Energy: -5.979 eV/atom
+          Volume: 74.2 A^3
+          SpaceG: Fm-3m
+      [3] MgO
+          Source: oqmd-7903074
+          Energy: -5.979 eV/atom
+          Volume: 74.1 A^3
+          SpaceG: Pmmn
+Testing: GaAs                          [DEBUG] Starting guess for GaAs (Anon: AB)
+[DEBUG] Loaded 90118 entries for AB in 0.0000s
+[DEBUG] Exact string match failed. Trying robust chemical comparison...
+[DEBUG] Strategy 0: Found 137 exact matches.
+[DEBUG] Total time: 2.5079s
+[DEBUG] Finalizing 6 candidates...
+[DEBUG] Returning top 3 unique candidates.
+[SUCCESS] 3 candidates (2.53s)
+      [1] GaAs
+          Source: agm004443957
+          Energy: -4.122 eV/atom
+          Volume: 200.3 A^3
+          SpaceG: P4_2/mnm
+      [2] GaAs
+          Source: agm004443960
+          Energy: -4.071 eV/atom
+          Volume: 313.8 A^3
+          SpaceG: Pmmn
+      [3] GaAs
+          Source: agm002065646
+          Energy: -4.060 eV/atom
+          Volume: 289.4 A^3
+          SpaceG: R-3m
+
+================================================================================
+TESTING FRACTIONAL PEROVSKITE COMPOSITIONS
+================================================================================
+--------------------------------------------------------------------------------
+Testing: La0.5Sr0.5MnO3                [DEBUG] Starting guess for Sr0.5La0.5Mn1O3 (Anon: A0.5B0.5CD3)
+[DEBUG] Loaded 0 entries for A0.5B0.5CD3 in 0.0001s
+[DEBUG] Strategy 2: Attempting generalized grouping...
+[DEBUG] Grouping: Target sums to 5.00 atoms (~5 sites).
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> LaMnO3(Score=1300.8), LaMnO3(Score=1300.8), LaMnO3(Score=1300.8)
+[DEBUG] Grouping: Selected top 3 parents for ABC3: ['LaMnO3', 'LaMnO3', 'LaMnO3']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> La2O3(Score=800.8), La2O3(Score=800.8), La2O3(Score=800.8)
+[DEBUG] Grouping: Selected top 3 parents for A2B3: ['La2O3', 'La2O3', 'La2O3']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> La2MnO2(Score=1300.8), La2MnO2(Score=1300.7), La2O2Sr(Score=1300.6)
+[DEBUG] Grouping: Selected top 3 parents for AB2C2: ['La2MnO2', 'La2MnO2', 'La2O2Sr']
+[DEBUG] Strategy 2 generated 2 candidates in 38.7183s
+[DEBUG] Finalizing 2 candidates...
+[DEBUG] Returning top 2 unique candidates.
+[SUCCESS] 2 candidates (38.73s)
+      [1] SrLaMn2O6
+          Source: grouped_from_agm002938082 (Base: La2MnO2)
+          Method: Generalized Grouping (Base: La2MnO2)
+          Energy: N/A
+          Volume: 241.6 A^3
+      [2] SrLaMn2O6
+          Source: grouped_from_agm002938328 (Base: La2O2Sr)
+          Method: Generalized Grouping (Base: La2O2Sr)
+          Energy: N/A
+          Volume: 294.8 A^3
+Testing: LaMn0.75Fe0.25O3              [DEBUG] Starting guess for La1Mn0.75Fe0.25O3 (Anon: A0.25B0.75CD3)
+[DEBUG] Loaded 0 entries for A0.25B0.75CD3 in 0.0000s
+[DEBUG] Strategy 2: Attempting generalized grouping...
+[DEBUG] Grouping: Target sums to 5.00 atoms (~5 sites).
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> LaMnO3(Score=1300.8), LaMnO3(Score=1300.8), LaMnO3(Score=1300.8)
+[DEBUG] Grouping: Selected top 3 parents for ABC3: ['LaMnO3', 'LaMnO3', 'LaMnO3']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> La2O3(Score=800.8), La2O3(Score=800.8), La2O3(Score=800.8)
+[DEBUG] Grouping: Selected top 3 parents for A2B3: ['La2O3', 'La2O3', 'La2O3']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> La2MnO2(Score=1300.8), La2MnO2(Score=1300.7), Fe2MnO2(Score=1300.6)
+[DEBUG] Grouping: Selected top 3 parents for AB2C2: ['La2MnO2', 'La2MnO2', 'Fe2MnO2']
+[DEBUG] Strategy 2 generated 1 candidates in 5.0732s
+[DEBUG] Finalizing 1 candidates...
+[DEBUG] Returning top 1 unique candidates.
+[SUCCESS] 1 candidates (5.08s)
+      [1] La2Mn1.5Fe0.5O6
+          Source: grouped_from_agm002938082 (Base: La2MnO2)
+          Method: Generalized Grouping (Base: La2MnO2)
+          Energy: N/A
+          Volume: 241.6 A^3
+Testing: La0.5Ca0.5Mn0.8Fe0.2O3        [DEBUG] Starting guess for Ca0.5La0.5Mn0.8Fe0.2O3 (Anon: A0.2B0.5C0.5D0.8E3)
+[DEBUG] Loaded 0 entries for A0.2B0.5C0.5D0.8E3 in 0.0000s
+[DEBUG] Strategy 2: Attempting generalized grouping...
+[DEBUG] Grouping: Target sums to 5.00 atoms (~5 sites).
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> LaMnO3(Score=1300.8), LaMnO3(Score=1300.8), LaMnO3(Score=1300.8)
+[DEBUG] Grouping: Selected top 3 parents for ABC3: ['LaMnO3', 'LaMnO3', 'LaMnO3']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> La2O3(Score=800.8), La2O3(Score=800.8), La2O3(Score=800.8)
+[DEBUG] Grouping: Selected top 3 parents for A2B3: ['La2O3', 'La2O3', 'La2O3']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> La2MnO2(Score=1300.8), La2MnO2(Score=1300.7), Fe2MnO2(Score=1300.6)
+[DEBUG] Grouping: Selected top 3 parents for AB2C2: ['La2MnO2', 'La2MnO2', 'Fe2MnO2']
+[DEBUG] Strategy 2 generated 1 candidates in 5.1344s
+[DEBUG] Finalizing 1 candidates...
+[DEBUG] Returning top 1 unique candidates.
+[SUCCESS] 1 candidates (5.14s)
+      [1] Ca1La1Mn1.6Fe0.4O6
+          Source: grouped_from_agm002938082 (Base: La2MnO2)
+          Method: Generalized Grouping (Base: La2MnO2)
+          Energy: N/A
+          Volume: 241.6 A^3
+Testing: SrTi0.5Zr0.5O3                [DEBUG] Starting guess for Sr1Zr0.5Ti0.5O3 (Anon: A0.5B0.5CD3)
+[DEBUG] Loaded 0 entries for A0.5B0.5CD3 in 0.0001s
+[DEBUG] Strategy 2: Attempting generalized grouping...
+[DEBUG] Grouping: Target sums to 5.00 atoms (~5 sites).
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> O3TiZr(Score=1300.9), OTiZr3(Score=1300.9), O3TiZr(Score=1300.9)
+[DEBUG] Grouping: Selected top 3 parents for ABC3: ['O3TiZr', 'OTiZr3', 'O3TiZr']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> O3Zr2(Score=800.9), O3Zr2(Score=800.9), O3Zr2(Score=800.9)
+[DEBUG] Grouping: Selected top 3 parents for A2B3: ['O3Zr2', 'O3Zr2', 'O3Zr2']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> O2TiZr2(Score=1300.9), O2TiZr2(Score=1300.8), N2TiZr2(Score=1051.0)
+[DEBUG] Grouping: Selected top 3 parents for AB2C2: ['O2TiZr2', 'O2TiZr2', 'N2TiZr2']
+[DEBUG] Strategy 2 generated 3 candidates in 5.0270s
+[DEBUG] Finalizing 3 candidates...
+[DEBUG] Returning top 3 unique candidates.
+[SUCCESS] 3 candidates (5.04s)
+      [1] Sr2ZrTiO6
+          Source: grouped_from_agm005852602 (Base: OTiZr3)
+          Method: Generalized Grouping (Base: OTiZr3)
+          Energy: N/A
+          Volume: 178.8 A^3
+      [2] Sr2ZrTiO6
+          Source: grouped_from_agm002172816 (Base: O3Zr2)
+          Method: Generalized Grouping (Base: O3Zr2)
+          Energy: N/A
+          Volume: 116.3 A^3
+      [3] Sr2ZrTiO6
+          Source: grouped_from_agm002937892 (Base: O2TiZr2)
+          Method: Generalized Grouping (Base: O2TiZr2)
+          Energy: N/A
+          Volume: 171.2 A^3
+Testing: Ba0.5Sr0.5TiO3                [DEBUG] Starting guess for Ba0.5Sr0.5Ti1O3 (Anon: A0.5B0.5CD3)
+[DEBUG] Loaded 0 entries for A0.5B0.5CD3 in 0.0000s
+[DEBUG] Strategy 2: Attempting generalized grouping...
+[DEBUG] Grouping: Target sums to 5.00 atoms (~5 sites).
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> BaO3Ti(Score=1300.8), BaO3Ti(Score=1300.8), BaO3Ti(Score=1300.8)
+[DEBUG] Grouping: Selected top 3 parents for ABC3: ['BaO3Ti', 'BaO3Ti', 'BaO3Ti']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> O3Ti2(Score=800.9), O3Ti2(Score=800.9), O3Ti2(Score=800.9)
+[DEBUG] Grouping: Selected top 3 parents for A2B3: ['O3Ti2', 'O3Ti2', 'O3Ti2']
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top candidates -> BaN2Ti2(Score=1050.8), BaN2Ti2(Score=1050.7), BaP2Ti2(Score=1050.6)
+[DEBUG] Grouping: Selected top 3 parents for AB2C2: ['BaN2Ti2', 'BaN2Ti2', 'BaP2Ti2']
+[DEBUG] Strategy 2 generated 4 candidates in 5.0362s
+[DEBUG] Finalizing 4 candidates...
+[DEBUG] Returning top 3 unique candidates.
+[SUCCESS] 3 candidates (5.05s)
+      [1] BaSrTi2O6
+          Source: grouped_from_agm003129350 (Base: BaO3Ti)
+          Method: Generalized Grouping (Base: BaO3Ti)
+          Energy: N/A
+          Volume: 135.5 A^3
+      [2] BaSrTi2O6
+          Source: grouped_from_oqmd-9627805 (Base: O3Ti2)
+          Method: Generalized Grouping (Base: O3Ti2)
+          Energy: N/A
+          Volume: 105.0 A^3
+      [3] BaSrTi2O6
+          Source: grouped_from_agm002933880 (Base: BaN2Ti2)
+          Method: Generalized Grouping (Base: BaN2Ti2)
+          Energy: N/A
+          Volume: 203.6 A^3
+
+================================================================================
+TESTING STEEL COMPOSITIONS FROM CSV
+================================================================================
+Loaded 10 compositions from CSV
+Testing: Fe0.8C0.1Mn0.05Cr0.03Ni0.02   [FAILED] 0 candidates (143.41s)
+  >>> REASON: Log: [DEBUG] Returning top 1 unique candidates.
+Testing: Fe0.75C0.15Si0.05Mn0.03Cr0.02 

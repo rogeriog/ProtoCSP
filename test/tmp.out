@@ -1,0 +1,522 @@
+================================================================================
+CRYSTALGUESSER
+================================================================================
+Target Composition: TiO2
+Index Path: lemat_formula_indexed
+[DEBUG] Starting guess for TiO2 (Anon: AB2)
+[DEBUG] Loaded 77682 entries for AB2 in 2.6737s
+[DEBUG] Exact string match failed. Trying robust chemical comparison...
+[DEBUG] Strategy 0: Found 110 exact matches.
+[['mp-34688', -8.967077648333333], ['mp-2420244', -8.9640326675], ['agm005256394', -8.959197470833333], ['agm005272436', -8.934928271666667], ['mp-777129', -8.925276450185185], ['agm005231357', -8.889941163333333], ['mp-849533', -8.882773124583332], ['agm2000125002', -8.882543965], ['agm005269699', -8.868061877499999], ['mp-756587', -8.861910037916667], ['mp-1190753', -8.855942402083334], ['agm2000006531', -8.85584005], ['agm002300834', -8.839134884444444], ['agm2000002461', -8.8352516975], ['agm2000110291', -8.826982296666666], ['mp-1386640', -8.826175999166667], ['mp-25433', -8.825943756666666], ['oqmd-2079089', -8.823583333333334], ['agm005290952', -8.82287542625], ['agm005243834', -8.821754366666667], ['agm2000111784', -8.820687973333333], ['agm2000018462', -8.82067624], ['mp-1245098', -8.811946400888889], ['oqmd-2016332', -8.81025], ['mp-1245308', -8.80852806811111], ['mp-1380335', -8.802220400277777], ['mp-1044853', -8.801485390833333], ['mp-1245134', -8.799259148444445], ['oqmd-9777726', -8.79847619047619], ['mp-25262', -8.798146321666666], ['oqmd-9831488', -8.7979375], ['oqmd-9626812', -8.797683333333334], ['mp-1408285', -8.796245454166668], ['mp-1245321', -8.789453298], ['mp-1350429', -8.789243074583334], ['oqmd-1924622', -8.780166666666666], ['oqmd-9914209', -8.776848484848486], ['oqmd-9741708', -8.771749999999999], ['agm005483527', -8.770783326666667], ['oqmd-1921148', -8.769166666666667], ['oqmd-9827278', -8.767041666666666], ['oqmd-4447802', -8.766016666666667], ['agm2000008833', -8.746309335000001], ['agm2000110292', -8.746190663333334], ['agm1000007701', -8.727763033333334], ['oqmd-9701445', -8.727583333333333], ['oqmd-7922962', -8.72375], ['oqmd-5700420', -8.72375], ['mp-1102591', -8.723654799166667], ['agm005512711', -8.7230970425], ['agm2000006530', -8.711547786666666], ['mp-1102255', -8.6825014075], ['oqmd-7917114', -8.681383333333333], ['oqmd-5675925', -8.681383333333333], ['agm1000007391', -8.679173853333333], ['mp-1008677', -8.675335443333333], ['oqmd-8489259', -8.671083333333334], ['oqmd-8891553', -8.66975], ['mp-636827', -8.66856447875], ['oqmd-2079067', -8.667083333333332], ['mp-655656', -8.666477554166667], ['oqmd-5697987', -8.663833333333333], ['oqmd-7912772', -8.663833333333333], ['oqmd-7918128', -8.663366666666667], ['oqmd-5676249', -8.663366666666667], ['oqmd-7912614', -8.657166666666667], ['oqmd-5709075', -8.657166666666667], ['mp-1079207', -8.647230302222221], ['oqmd-7919492', -8.634183333333334], ['oqmd-5676288', -8.634183333333334], ['oqmd-1924524', -8.629333333333333], ['agm2000027041', -8.596184955], ['agm1000001018', -8.585098180000001], ['oqmd-2001217', -8.564916666666667], ['oqmd-7905866', -8.545066666666667], ['oqmd-5664159', -8.545066666666667], ['oqmd-9658754', -8.531411111111112], ['oqmd-9648339', -8.474166666666667], ['agm1000017366', -8.451231002222222], ['mp-572822', -8.426253664166667], ['oqmd-9642780', -8.400683333333333], ['agm2000030207', -8.374898465], ['agm1000004242', -8.370459805], ['agm1000018941', -8.361587605], ['oqmd-5675689', -8.263666666666667], ['oqmd-7913890', -8.263666666666667], ['agm2000045837', -8.238448045], ['agm2000045836', -8.2070401225], ['agm2000006532', -8.14244671], ['oqmd-7915178', -8.094766666666667], ['oqmd-5675101', -8.094766666666667], ['oqmd-9589658', -8.0821], ['oqmd-7904300', -8.069333333333333], ['oqmd-5673602', -8.069333333333333], ['agm2000006529', -8.062567079999999], ['agm2000027040', -8.062561458333333], ['agm1000000543', -7.997594963333333], ['agm1000010449', -7.960725646666667], ['agm2000045835', -7.935906153333333], ['oqmd-5664243', -7.9055], ['oqmd-7910768', -7.9055], ['agm2000045834', -7.526959461666666], ['agm2000045833', -7.31854889], ['agm1000006569', -7.045799983333333], ['oqmd-7925036', -6.966966666666667], ['oqmd-5665001', -6.966966666666667], ['agm005423602', -6.263912691666667], ['agm2000045838', -6.134669352222222], ['oqmd-6545189', -5.770616666666666], ['agm1000005582', -5.612718563333334]]
+[DEBUG] Total time: 4.8162s
+[DEBUG] Finalizing 4 candidates...
+[DEBUG] Returning top 2 unique candidates.
+
+================================================================================
+GENERATION COMPLETE (2 candidates in 4.83s)
+
+Generated Structures:
+[1] Formula: TiO2
+    Source ID: mp-34688
+    Energy: -8.967 eV/atom
+    Space Group: C2/c
+    Volume: 70.481 Å³
+
+[2] Formula: TiO2
+    Source ID: mp-2420244
+    Energy: -8.964 eV/atom
+    Space Group: Pnma
+    Volume: 204.947 Å³
+
+
+Saving 2 structures to ./test_cif_output/
+  [1] Saved: TiO2_unknown_mp-34688_candidate_1.cif
+  [2] Saved: TiO2_unknown_mp-2420244_candidate_2.cif
+================================================================================
+CRYSTALGUESSER
+================================================================================
+Target Composition: FeNi
+Index Path: lemat_formula_indexed
+[DEBUG] Starting guess for FeNi (Anon: AB)
+[DEBUG] Loaded 90118 entries for AB in 3.1480s
+[DEBUG] Strategy 0: Found 28 exact matches.
+[['agm002064897', -7.1520938175], ['agm004444309', -7.14513650625], ['agm004444310', -7.126113091666666], ['agm003184721', -7.118456355], ['agm004259075', -7.1145439175], ['mp-1224965', -7.10055594], ['agm004364856', -7.0603583075], ['oqmd-2020668', -7.00605], ['oqmd-2019971', -7.00605], ['oqmd-4120062', -6.96355], ['oqmd-4144197', -6.9323], ['agm004444304', -6.885017980625], ['agm004444308', -6.86550071], ['agm003293681', -6.856000035], ['agm005492490', -6.837541865], ['agm004444303', -6.813231063125], ['agm004444307', -6.7593613075], ['agm004285663', -6.67232822], ['agm004444305', -6.6173281425], ['agm004194208', -6.531086015], ['agm004444306', -6.4936723858333325], ['agm2000121896', -6.44055647], ['oqmd-5373674', -6.384], ['oqmd-7290902', -6.384], ['oqmd-5362329', -6.384], ['agm004444313', -6.21595555], ['agm004444302', -5.807633115625], ['agm004444311', -5.752456919166666]]
+[DEBUG] Total time: 3.1735s
+[DEBUG] Finalizing 4 candidates...
+[DEBUG] Returning top 2 unique candidates.
+
+================================================================================
+GENERATION COMPLETE (2 candidates in 3.19s)
+
+Generated Structures:
+[1] Formula: FeNi
+    Source ID: agm002064897
+    Energy: -7.152 eV/atom
+    Space Group: C2/m
+    Volume: 145.190 Å³
+
+[2] Formula: FeNi
+    Source ID: agm004444309
+    Energy: -7.145 eV/atom
+    Space Group: Pnma
+    Volume: 290.379 Å³
+
+
+Saving 2 structures to ./test_cif_output/
+  [1] Saved: FeNi_unknown_agm002064897_candidate_1.cif
+  [2] Saved: FeNi_unknown_agm004444309_candidate_2.cif
+================================================================================
+CRYSTALGUESSER
+================================================================================
+Target Composition: LaMnO3
+Index Path: lemat_formula_indexed
+[DEBUG] Starting guess for LaMnO3 (Anon: ABC3)
+[DEBUG] Loaded 287563 entries for ABC3 in 8.6008s
+[DEBUG] Strategy 0: Found 46 exact matches.
+[['mp-557795', -8.0650545575], ['mp-17554', -8.055347997], ['agm003128520', -8.0467764845], ['agm002228594', -8.03747051], ['oqmd-1927138', -8.0213], ['mp-1278230', -8.016523016499999], ['oqmd-8702773', -8.011750000000001], ['mp-19168', -8.011512890999999], ['oqmd-2002938', -8.0115], ['oqmd-9135831', -8.01089], ['oqmd-9660794', -8.01074], ['agm003128494', -8.007019005], ['mp-1272996', -7.998855871000001], ['mp-1281528', -7.9955427465], ['mp-1279320', -7.9952884365], ['agm003128514', -7.9912014319999995], ['mp-1273769', -7.9831549255], ['mp-1272373', -7.9784037415], ['mp-19025', -7.9735974380000005], ['agm003128510', -7.968251802], ['oqmd-2057648', -7.947159999999999], ['mp-1273223', -7.941661424], ['mp-1205375', -7.941388089999999], ['mp-1278738', -7.931348851], ['mp-1278019', -7.9231586695], ['mp-1283081', -7.911372892], ['oqmd-1991552', -7.78378], ['agm003128498', -7.772277336], ['oqmd-2005908', -7.7278], ['agm003128513', -7.7226327800000005], ['oqmd-2606324', -7.695099999999999], ['agm003128499', -7.693695422999999], ['agm003128497', -7.638444066], ['agm003128516', -7.586654853000001], ['mp-1180932', -7.547322701500001], ['agm003128501', -7.408355281], ['agm003128503', -7.381001802], ['agm003128524', -7.312773448], ['agm003128511', -7.312297896], ['agm003128507', -7.3100200090000005], ['agm003128522', -7.284077024], ['agm003128521', -7.234953053], ['oqmd-1953196', -7.2112], ['agm003128502', -7.059183337], ['agm003128515', -6.937820284999999], ['agm003128517', -6.868214488]]
+[DEBUG] Total time: 8.6731s
+[DEBUG] Finalizing 4 candidates...
+[DEBUG] Returning top 2 unique candidates.
+
+================================================================================
+GENERATION COMPLETE (2 candidates in 8.69s)
+
+Generated Structures:
+[1] Formula: LaMnO3
+    Source ID: mp-557795
+    Energy: -8.065 eV/atom
+    Space Group: P2_1/c
+    Volume: 297.141 Å³
+
+[2] Formula: LaMnO3
+    Source ID: mp-17554
+    Energy: -8.055 eV/atom
+    Space Group: Pnma
+    Volume: 254.731 Å³
+
+
+Saving 2 structures to ./test_cif_output/
+  [1] Saved: LaMnO3_unknown_mp-557795_candidate_1.cif
+  [2] Saved: LaMnO3_unknown_mp-17554_candidate_2.cif
+================================================================================
+CRYSTALGUESSER
+================================================================================
+Target Composition: La0.5Sr0.5MnO3
+Index Path: lemat_formula_indexed
+[DEBUG] Starting guess for Sr0.5La0.5Mn1O3 (Anon: A0.5B0.5CD3)
+[DEBUG] Loaded 0 entries for A0.5B0.5CD3 in 0.0001s
+[DEBUG] Strategy 2: Attempting generalized grouping...
+[DEBUG] Grouping: Target sums to 5.00 atoms (~5 sites).
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top 10 candidates (score, formula, id, energy) ->  [[1300.80650545575, 'LaMnO3', 'mp-557795', -8.0650545575], [1300.8055347997, 'LaMnO3', 'mp-17554', -8.055347997], [1300.80467764845, 'LaMnO3', 'agm003128520', -8.0467764845], [1300.803747051, 'LaMnO3', 'agm002228594', -8.03747051], [1300.80213, 'LaMnO3', 'oqmd-1927138', -8.0213], [1300.80165230165, 'LaMnO3', 'mp-1278230', -8.016523016499999], [1300.801175, 'LaMnO3', 'oqmd-8702773', -8.011750000000001], [1300.8011512891, 'LaMnO3', 'mp-19168', -8.011512890999999], [1300.80115, 'LaMnO3', 'oqmd-2002938', -8.0115], [1300.801089, 'LaMnO3', 'oqmd-9135831', -8.01089]]
+[DEBUG] Ranking: Top candidates -> LaMnO3-mp-557795(Score=1300.8), LaMnO3-mp-17554(Score=1300.8), LaMnO3-agm003128520(Score=1300.8)
+[DEBUG] Grouping: Selected top 3 parents for ABC3: ['LaMnO3', 'LaMnO3', 'LaMnO3']
+[DEBUG] Grouping: Trying parent LaMnO3 (ID: mp-557795)
+[DEBUG] Grouping: Trying parent LaMnO3 (ID: mp-17554)
+[DEBUG] Grouping: Trying parent LaMnO3 (ID: agm003128520)
+[DEBUG] Ranking: Target is OXIDE/SALT (Anion Fraction: 60.00%)
+[DEBUG] Ranking: Top 10 candidates (score, formula, id, energy) ->  [[800.84007, 'La2O3', 'oqmd-2298533', -8.4007], [800.8375070233334, 'La2O3', 'mp-557691', -8.375070233333334], [800.82725284095, 'La2O3', 'agm003287841', -8.272528409500001], [800.8201123377, 'La2O3', 'agm2000018484', -8.201123377], [800.8170990514, 'La2O3', 'mp-1180635', -8.170990514], [800.816348, 'La2O3', 'oqmd-5672388', -8.16348], [800.816348, 'La2O3', 'oqmd-7918908', -8.16348], [800.8139909264, 'La2O3', 'agm2000006601', -8.139909264], [800.8024008359, 'La2O3', 'agm2000045972', -8.024008359], [800.8014518626, 'La2O3', 'agm2000006602', -8.014518626000001]]
+[DEBUG] Ranking: Top candidates -> La2O3-oqmd-2298533(Score=800.8), La2O3-mp-557691(Score=800.8), La2O3-agm003287841(Score=800.8)
+[DEBUG] Grouping: Selected top 3 parents for A2B3: ['La2O3', 'La2O3', 'La2O3']
+[DEBUG] Grouping: Trying parent La2O3 (ID: oqmd-2298533)
+[DEBUG] Grouping: Trying parent La2O3 (ID: mp-557691)
+[DEBUG] Strategy 2 generated 5 candidates in 20.1001s
+[DEBUG] Finalizing 5 candidates...
+[DEBUG] Returning top 2 unique candidates.
+
+================================================================================
+GENERATION COMPLETE (2 candidates in 20.12s)
+
+Generated Structures:
+[1] Formula: SrLaMn2O6
+    Source ID: grouped_from_mp-557795
+    Energy: N/A
+    Space Group: P2_1
+    Volume: 594.282 Å³
+
+[2] Formula: SrLaMn2O6
+    Source ID: grouped_from_mp-17554
+    Energy: N/A
+    Space Group: P2_1/m
+    Volume: 509.463 Å³
+
+
+Saving 2 structures to ./test_cif_output/
+  [1] Saved: La0.5Sr0.5MnO3_generalized_grouping_grouped_from_mp-557795_candidate_1.cif
+  [2] Saved: La0.5Sr0.5MnO3_generalized_grouping_grouped_from_mp-17554_candidate_2.cif
+================================================================================
+CRYSTALGUESSER
+================================================================================
+Target Composition: Fe0.8C0.1Mn0.05Cr0.03Ni0.02
+Index Path: lemat_formula_indexed
+[DEBUG] Starting guess for Mn0.05Cr0.03Fe0.8Ni0.02C0.1 (Anon: A0.02B0.03C0.05D0.1E0.8)
+[DEBUG] Loaded 0 entries for A0.02B0.03C0.05D0.1E0.8 in 0.0001s
+[DEBUG] Strategy 2: Attempting generalized grouping...
+[DEBUG] Grouping: Target sums to 1.00 atoms (~1 sites).
+[DEBUG] Strategy 2 generated 0 candidates in 0.0000s
+[DEBUG] Strategy 3: Recursive Reduction/Doping...
+[DEBUG] Reduction: Starting with composition Mn0.05Cr0.03Fe0.8Ni0.02C0.1
+[DEBUG] Reduction: Element fractions: Fe=0.800, C=0.100, Mn=0.050, Cr=0.030, Ni=0.020
+[DEBUG] Reduction: Hierarchical reduction order (smallest first): ['Ni', 'Cr', 'Mn', 'C', 'Fe']
+[DEBUG] Reduction Step 0: Testing subset Mn0.05Cr0.03Fe0.8Ni0.02C0.1 -> Class ABCDE (Coverage: 100.0%)
+[DEBUG]   -> Found 4232 prototypes for class ABCDE
+[DEBUG] Ranking: Target is METAL/ALLOY (Anion Fraction: 0.00%)
+[DEBUG] Ranking: Top 10 candidates (score, formula, id, energy) ->  [[1700.7043770928, 'CFeNiSbY', 'agm002044911', -7.043770928000001], [1700.7005508438, 'CFeNiSbY', 'agm002044912', -7.005508438], [1700.68063644, 'CFeNiSbY', 'agm002044914', -6.8063644], [1700.6121859291, 'AuCCrHNi', 'agm002075548', -6.121859291], [1700.605314714, 'AuCCrHNi', 'agm002075542', -6.05314714], [1700.6052940598, 'AuCCrHNi', 'agm002075547', -6.052940598], [1700.6050615077, 'AuCCrHNi', 'agm002075546', -6.050615077], [1700.6037744925, 'AuCCrHNi', 'agm002075543', -6.037744925], [1700.5968342054, 'BeFeMnNiPb', 'agm002038082', -5.968342054], [1700.5957406273, 'BeFeMnNiPb', 'agm002038080', -5.957406273]]
+[DEBUG] Ranking: Top candidates -> CFeNiSbY-agm002044911(Score=1700.7), CFeNiSbY-agm002044912(Score=1700.7), CFeNiSbY-agm002044914(Score=1700.7)
+[DEBUG]   -> First match: CFeNiSbY (RMSD: 0.301). Setting as baseline.
+[DEBUG]   -> *** New Best Base Found! CFeNiSbY ***
+[DEBUG]   -> Removing minority element: Ni (fraction: 0.020)
+[DEBUG] Reduction Step 1: Testing subset Mn0.05Cr0.03Fe0.8C0.1 -> Class ABCD (Coverage: 98.0%)
+[DEBUG]   -> Found 329030 prototypes for class ABCD
+[DEBUG] Ranking: Target is METAL/ALLOY (Anion Fraction: 0.00%)
+[DEBUG] Ranking: Top 10 candidates (score, formula, id, energy) ->  [[1700.995980189, 'CrFeMnW', 'agm001391275', -9.95980189], [1700.98760528375, 'CrFeMnRe', 'agm001403166', -9.8760528375], [1700.9786210095, 'CrFeMnTa', 'agm001391677', -9.786210095], [1700.95163226225, 'CrFeMnOs', 'agm001403249', -9.5163226225], [1700.94237679175, 'CrFeMnMo', 'agm001398817', -9.4237679175], [1700.93739883075, 'CFeMnU', 'agm005211521', -9.3739883075], [1700.93259421625, 'CrFeMnTc', 'agm001403373', -9.3259421625], [1700.930047496, 'CrFeMnNb', 'agm001397894', -9.30047496], [1700.91368345075, 'CrFeMnV', 'agm001403436', -9.1368345075], [1700.912493106, 'CrFeMnV', 'agm005211380', -9.12493106]]
+[DEBUG] Ranking: Top candidates -> CrFeMnW-agm001391275(Score=1701.0), CrFeMnRe-agm001403166(Score=1701.0), CrFeMnTa-agm001391677(Score=1701.0)
+[DEBUG]   -> RMSD 0.328 not better than current best 0.301, skipping
+[DEBUG]   -> Removing minority element: Cr (fraction: 0.031)
+[DEBUG] Reduction Step 2: Testing subset Mn0.05Fe0.8C0.1 -> Class ABC (Coverage: 95.0%)
+[DEBUG]   -> Found 381899 prototypes for class ABC
+[DEBUG] Ranking: Target is METAL/ALLOY (Anion Fraction: 0.00%)
+[DEBUG] Ranking: Top 10 candidates (score, formula, id, energy) ->  [[2700.8851329638333, 'CFeMn', 'agm001041671', -8.851329638333334], [1201.0943283670833, 'CMnPu', 'agm001040820', -10.943283670833333], [1201.080631081, 'CMnPu', 'agm001268414', -10.80631081], [1201.0777308836666, 'CGdMn', 'agm001268409', -10.777308836666668], [1201.0698196063333, 'FeMnPu', 'agm003604173', -10.698196063333334], [1201.0674044326668, 'CFePu', 'agm005690641', -10.674044326666667], [1201.0639520935833, 'CFePu', 'agm001042587', -10.639520935833334], [1201.0608559336667, 'FeMnPu', 'agm001059676', -10.608559336666668], [1201.0603229626668, 'CFePu', 'agm001268557', -10.603229626666666], [1201.057913113, 'CFeGd', 'agm001268552', -10.57913113]]
+[DEBUG] Ranking: Top candidates -> CFeMn-agm001041671(Score=2700.9), CMnPu-agm001040820(Score=1201.1), CMnPu-agm001268414(Score=1201.1)
+[DEBUG]   -> RMSD 0.360 not better than current best 0.301, skipping
+[DEBUG]   -> Removing minority element: Mn (fraction: 0.053)
+[DEBUG] Reduction Step 3: Testing subset Fe0.8C0.1 -> Class AB (Coverage: 90.0%)
+[DEBUG]   -> Found 90118 prototypes for class AB
+[DEBUG] Ranking: Target is METAL/ALLOY (Anion Fraction: 0.00%)
+[DEBUG] Ranking: Top 10 candidates (score, formula, id, energy) ->  [[2200.8440382235, 'CFe', 'agm002140004', -8.440382235], [2200.84300807975, 'CFe', 'agm004187036', -8.4300807975], [2200.8422704324375, 'CFe', 'agm004449355', -8.422704324375], [2200.8404038935623, 'CFe', 'agm004449361', -8.404038935625], [2200.838466602, 'CFe', 'agm004186785', -8.38466602], [2200.8381654945, 'CFe', 'agm002016096', -8.381654945], [2200.835860296, 'CFe', 'agm002016098', -8.35860296], [2200.8342326884167, 'CFe', 'agm004449358', -8.342326884166667], [2200.8338193315, 'CFe', 'agm004186780', -8.338193315], [2200.833327404, 'CFe', 'agm005451193', -8.333274040000001]]
+[DEBUG] Ranking: Top candidates -> CFe-agm002140004(Score=2200.8), CFe-agm004187036(Score=2200.8), CFe-agm004449355(Score=2200.8)
+[DEBUG]   -> RMSD 0.389 not better than current best 0.301, skipping
+[DEBUG]   -> Removing minority element: C (fraction: 0.111)
+[DEBUG] Reduction Step 4: Testing subset Fe0.8 -> Class A (Coverage: 80.0%)
+[DEBUG]   -> Found 2946 prototypes for class A
+[DEBUG] Ranking: Target is METAL/ALLOY (Anion Fraction: 0.00%)
+[DEBUG] Ranking: Top 10 candidates (score, formula, id, energy) ->  [[1700.84028666925, 'Fe', 'mp-1271068', -8.4028666925], [1700.837452972, 'Fe', 'mp-1271128', -8.37452972], [1700.834981257, 'Fe', 'agm002149569', -8.34981257], [1700.8321941285, 'Fe', 'agm002149562', -8.321941285], [1700.8309643446667, 'Fe', 'agm002211246', -8.309643446666668], [1700.8308733333333, 'Fe', 'oqmd-9864829', -8.308733333333333], [1700.8308555855833, 'Fe', 'agm004444421', -8.308555855833333], [1700.8290753956428, 'Fe', 'agm005232708', -8.29075395642857], [1700.8277569983334, 'Fe', 'agm002149561', -8.277569983333334], [1700.8272204956668, 'Fe', 'agm002371512', -8.272204956666666]]
+[DEBUG] Ranking: Top candidates -> Fe-mp-1271068(Score=1700.8), Fe-mp-1271128(Score=1700.8), Fe-agm002149569(Score=1700.8)
+[DEBUG]   -> Significant RMSD improvement (0.301 -> 0.000). Updating despite coverage change.
+[DEBUG]   -> *** New Best Base Found! Fe ***
+[DEBUG]   -> Removing minority element: Fe (fraction: 1.000)
+[DEBUG] Reduction: Final best base structure: Fe with elements ['Fe']
+[DEBUG] Strategy 3: Found base structure Fe. Doping...
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [3, 3, 3] to approx 50 atoms.
+[DEBUG] Doping: Host elements ['Fe'] have average radius 1.400 Å
+[DEBUG] Doping: Element C (r=0.700 Å) is INTERSTITIAL (Ratio: 0.50, Count: 11)
+[DEBUG] Doping: Element Mn (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 5)
+[DEBUG] Doping: Element Cr (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 3)
+[DEBUG] Doping: Element Ni (r=1.350 Å) is SUBSTITUTIONAL (Ratio: 0.96, Count: 2)
+[DEBUG] Doping: Replacing 108 sites with substitutional elements...
+[DEBUG] Doping: Inserting 11 interstitial atoms...
+[DEBUG] Interstitial Insertion: Starting with 11 species to insert into structure with 108 sites.
+[DEBUG] Interstitial Insertion: Using thresholds [1.1, 0.9, 0.7, 0.5] for void detection.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (1/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.12761346 0.10105022 0.96059635] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (2/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.42121232 0.39402522 0.61524343] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (3/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.23236652 0.03804775 0.46180981] after 4 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (4/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.54062418 0.68643277 0.0494329 ] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (5/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.50059645 0.02908819 0.87643227] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (6/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.74638077 0.46647987 0.95760157] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (7/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.35866436 0.35755802 0.08008135] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (8/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.73583796 0.9227549  0.56054309] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (9/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.49921591 0.78534348 0.8182666 ] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (10/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.36089221 0.1474283  0.95415355] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (11/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.27136776 0.22690017 0.53377469] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Completed. Structure now has 119 sites.
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [3, 3, 3] to approx 50 atoms.
+[DEBUG] Doping: Host elements ['Fe'] have average radius 1.400 Å
+[DEBUG] Doping: Element C (r=0.700 Å) is INTERSTITIAL (Ratio: 0.50, Count: 11)
+[DEBUG] Doping: Element Mn (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 5)
+[DEBUG] Doping: Element Cr (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 3)
+[DEBUG] Doping: Element Ni (r=1.350 Å) is SUBSTITUTIONAL (Ratio: 0.96, Count: 2)
+[DEBUG] Doping: Replacing 108 sites with substitutional elements...
+[DEBUG] Doping: Inserting 11 interstitial atoms...
+[DEBUG] Interstitial Insertion: Starting with 11 species to insert into structure with 108 sites.
+[DEBUG] Interstitial Insertion: Using thresholds [1.1, 0.9, 0.7, 0.5] for void detection.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (1/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.73267991 0.11208257 0.63460196] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (2/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.81003492 0.17193287 0.69002894] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (3/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.53730923 0.87207481 0.32920092] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (4/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.06435547 0.01056086 0.41007281] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (5/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.48358784 0.72208311 0.53589126] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (6/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.8714573  0.43275782 0.96593998] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (7/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.47638384 0.1156976  0.30519378] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (8/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.44712975 0.18794247 0.01299402] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (9/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.04845667 0.68107525 0.41224691] after 6 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (10/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.33734462 0.63810221 0.4291092 ] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (11/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.94706917 0.29227241 0.23853312] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Completed. Structure now has 119 sites.
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [3, 3, 3] to approx 50 atoms.
+[DEBUG] Doping: Host elements ['Fe'] have average radius 1.400 Å
+[DEBUG] Doping: Element C (r=0.700 Å) is INTERSTITIAL (Ratio: 0.50, Count: 11)
+[DEBUG] Doping: Element Mn (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 5)
+[DEBUG] Doping: Element Cr (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 3)
+[DEBUG] Doping: Element Ni (r=1.350 Å) is SUBSTITUTIONAL (Ratio: 0.96, Count: 2)
+[DEBUG] Doping: Replacing 108 sites with substitutional elements...
+[DEBUG] Doping: Inserting 11 interstitial atoms...
+[DEBUG] Interstitial Insertion: Starting with 11 species to insert into structure with 108 sites.
+[DEBUG] Interstitial Insertion: Using thresholds [1.1, 0.9, 0.7, 0.5] for void detection.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (1/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.80870829 0.28123196 0.35645694] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (2/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.15679083 0.32703372 0.21025792] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (3/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.74186025 0.14327639 0.6995104 ] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (4/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.8723387  0.62357313 0.45398261] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (5/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.84158405 0.15560405 0.16664523] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (6/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.65026187 0.1726849  0.52673487] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (7/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.72734121 0.9722085  0.11513389] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (8/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.37125492 0.3940964  0.62160249] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (9/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.62853466 0.8003954  0.78777267] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (10/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.11668701 0.64756945 0.70946695] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (11/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.67425465 0.91010153 0.88999978] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Completed. Structure now has 119 sites.
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [3, 3, 3] to approx 50 atoms.
+[DEBUG] Doping: Host elements ['Fe'] have average radius 1.400 Å
+[DEBUG] Doping: Element C (r=0.700 Å) is INTERSTITIAL (Ratio: 0.50, Count: 11)
+[DEBUG] Doping: Element Mn (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 5)
+[DEBUG] Doping: Element Cr (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 3)
+[DEBUG] Doping: Element Ni (r=1.350 Å) is SUBSTITUTIONAL (Ratio: 0.96, Count: 2)
+[DEBUG] Doping: Replacing 108 sites with substitutional elements...
+[DEBUG] Doping: Inserting 11 interstitial atoms...
+[DEBUG] Interstitial Insertion: Starting with 11 species to insert into structure with 108 sites.
+[DEBUG] Interstitial Insertion: Using thresholds [1.1, 0.9, 0.7, 0.5] for void detection.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (1/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.94127915 0.07244359 0.95976327] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (2/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.87006617 0.59120718 0.29089734] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (3/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.02007045 0.15469582 0.69642256] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (4/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.68450276 0.09134349 0.92356982] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (5/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.98170992 0.99680051 0.06695384] after 4 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (6/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.4853061  0.24816387 0.66829133] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (7/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.07982488 0.16597816 0.29348901] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (8/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.79313098 0.9115672  0.12194038] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (9/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.77879496 0.97692225 0.95658483] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (10/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.44489307 0.88908052 0.67263242] after 4 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (11/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.32774445 0.40676429 0.12507929] after 4 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Completed. Structure now has 119 sites.
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [3, 3, 3] to approx 50 atoms.
+[DEBUG] Doping: Host elements ['Fe'] have average radius 1.400 Å
+[DEBUG] Doping: Element C (r=0.700 Å) is INTERSTITIAL (Ratio: 0.50, Count: 11)
+[DEBUG] Doping: Element Mn (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 5)
+[DEBUG] Doping: Element Cr (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 3)
+[DEBUG] Doping: Element Ni (r=1.350 Å) is SUBSTITUTIONAL (Ratio: 0.96, Count: 2)
+[DEBUG] Doping: Replacing 108 sites with substitutional elements...
+[DEBUG] Doping: Inserting 11 interstitial atoms...
+[DEBUG] Interstitial Insertion: Starting with 11 species to insert into structure with 108 sites.
+[DEBUG] Interstitial Insertion: Using thresholds [1.1, 0.9, 0.7, 0.5] for void detection.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (1/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.18037145 0.70147111 0.52298535] after 4 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (2/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.29907927 0.65827986 0.06735925] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (3/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.28635206 0.07478788 0.57965015] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (4/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.31734532 0.84998611 0.4649046 ] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (5/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.77025567 0.65120842 0.03757008] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (6/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.56773241 0.98049734 0.72146724] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (7/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.45052544 0.35564801 0.61571084] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (8/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.87376126 0.14927718 0.13986514] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (9/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.31493135 0.88831274 0.59885426] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (10/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.49998228 0.9453872  0.80157733] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (11/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.6580349  0.85362798 0.18030989] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Completed. Structure now has 119 sites.
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [3, 3, 3] to approx 50 atoms.
+[DEBUG] Doping: Host elements ['Fe'] have average radius 1.400 Å
+[DEBUG] Doping: Element C (r=0.700 Å) is INTERSTITIAL (Ratio: 0.50, Count: 11)
+[DEBUG] Doping: Element Mn (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 5)
+[DEBUG] Doping: Element Cr (r=1.400 Å) is SUBSTITUTIONAL (Ratio: 1.00, Count: 3)
+[DEBUG] Doping: Element Ni (r=1.350 Å) is SUBSTITUTIONAL (Ratio: 0.96, Count: 2)
+[DEBUG] Doping: Replacing 108 sites with substitutional elements...
+[DEBUG] Doping: Inserting 11 interstitial atoms...
+[DEBUG] Interstitial Insertion: Starting with 11 species to insert into structure with 108 sites.
+[DEBUG] Interstitial Insertion: Using thresholds [1.1, 0.9, 0.7, 0.5] for void detection.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (1/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.95117251 0.89011229 0.05030862] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (2/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.50748552 0.85308791 0.46774851] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (3/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.45661417 0.49866117 0.52231442] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (4/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.4794551  0.99448181 0.32573857] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (5/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.70699387 0.22116729 0.73544684] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (6/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.77256046 0.64627343 0.7670492 ] after 1 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (7/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.53632068 0.30056958 0.37699976] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (8/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.03937564 0.89749386 0.61000137] after 2 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (9/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.57020892 0.77527436 0.78813826] after 5 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (10/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.61507463 0.69031923 0.73137807] after 4 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Attempting to insert specie C (11/11)
+[DEBUG] Interstitial Insertion: Trying threshold 1.1 Å for C
+[DEBUG] Interstitial Insertion: Successfully inserted C at fractional coords [0.27414711 0.03512986 0.92512776] after 3 attempts with threshold 1.1 Å.
+[DEBUG] Interstitial Insertion: Completed. Structure now has 119 sites.
+[DEBUG] Strategy 3: Successfully generated 6 doped structures
+[DEBUG]    -> Candidate 1: Mn5Cr3Fe98Ni2C11 (Base: Fe)
+[DEBUG]    -> Candidate 2: Mn5Cr3Fe98Ni2C11 (Base: Fe)
+[DEBUG]    -> Candidate 3: Mn5Cr3Fe98Ni2C11 (Base: Fe)
+[DEBUG]    -> Candidate 4: Mn5Cr3Fe98Ni2C11 (Base: Fe)
+[DEBUG]    -> Candidate 5: Mn5Cr3Fe98Ni2C11 (Base: Fe)
+[DEBUG] Strategy 3 finished in 49.4672s
+[DEBUG] Total time: 49.4678s
+[DEBUG] Finalizing 6 candidates...
+[DEBUG] Returning top 1 unique candidates.
+
+================================================================================
+GENERATION COMPLETE (1 candidates in 49.52s)
+
+Generated Structures:
+[1] Formula: Mn5Cr3Fe98Ni2C11
+    Source ID: doped_from_mp-1271068
+    Energy: N/A
+    Space Group: P1
+    Volume: 1974.217 Å³
+
+
+Saving 1 structures to ./test_cif_output/
+  [1] Saved: Fe0.8C0.1Mn0.05Cr0.03Ni0.02_doping_doped_from_mp-1271068_candidate_1.cif
+================================================================================
+TESTING CIF FILE GENERATION
+================================================================================
+
+Testing simple oxide: TiO2
+--------------------------------------------------------------------------------
+✓ Command executed successfully
+
+Testing simple alloy: FeNi
+--------------------------------------------------------------------------------
+✓ Command executed successfully
+
+Testing perovskite: LaMnO3
+--------------------------------------------------------------------------------
+✓ Command executed successfully
+
+Testing perovskite: La0.5Sr0.5MnO3
+--------------------------------------------------------------------------------
+✓ Command executed successfully
+
+Testing steel: Fe0.8C0.1Mn0.05Cr0.03Ni0.02
+--------------------------------------------------------------------------------
+✓ Command executed successfully
+
+================================================================================
+CIF GENERATION TEST COMPLETE
+================================================================================
+Total CIF files generated: 9
+Output directory: ./test_cif_output/

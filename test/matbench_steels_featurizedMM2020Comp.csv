@@ -1,0 +1,4 @@
+material_id,composition,target
+steel_1,Fe0.8C0.1Mn0.05Cr0.03Ni0.02,100
+steel_2,Fe0.75C0.15Si0.05Mn0.03Cr0.02,120
+steel_3,Fe0.7C0.2Mn0.05Ni0.03Mo0.02,110

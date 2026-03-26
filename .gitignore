@@ -1,0 +1,7 @@
+concatall_pyfiles.py
+concatenated_ProtoCSP_summary.txt
+lemat_database_scripts/lemat_id_index.pkl
+__pycache__
+
+## LeMat indexed database
+lemat_formula_indexed/
