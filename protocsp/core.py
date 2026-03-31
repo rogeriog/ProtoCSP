@@ -238,11 +238,13 @@ class ProtoCSP:
 
             # --- Strategy 1: Transmutation ---
             limit_transmute = 50
-            print(f"[DEBUG] Strategy 1: Transmuting top {min(len(entries), limit_transmute)} stable prototypes...")
+            print(f"[DEBUG] Strategy 1: Transmuting top {min(len(entries), limit_transmute)} chemically relevant prototypes...")
             
+            ranked_entries = self._rank_prototypes_by_similarity(entries, target_comp)
+
             t_trans = time.time()
             count_trans = 0
-            for e in entries[:limit_transmute]:
+            for e in ranked_entries[:limit_transmute]:
                 parent = self._hydrate_entry(e)
                 print(e['id'], e['energy_per_atom'], parent['reduced_formula'])
                 if not parent: continue
@@ -1172,7 +1174,8 @@ class ProtoCSP:
         UPDATED:
         1. Treats targets with < 10% anions as Alloys (Metal Path).
         2. Prioritizes chemical compatibility (element overlap) over energy.
-        3. For oxides, strongly prefers structures with matching cation elements.
+        3. Strongly binds matching anions (Fluorides with Fluorides).
+        4. Rewards Periodic Group similarity for structural cousins.
         """
         target_elements = set(target_comp.elements)
         target_symbols = {e.symbol for e in target_elements}
@@ -1181,6 +1184,9 @@ class ProtoCSP:
         common_anions = {'O', 'F', 'S', 'Cl', 'N', 'P', 'Br', 'I', 'Se', 'Te'}
         target_anions = {e.symbol for e in target_elements if e.symbol in common_anions}
         target_cations = {e.symbol for e in target_elements if e.symbol not in common_anions}
+        
+        # Pre-calculate groups for structural cousin matching
+        target_cation_groups = {e.group for e in target_elements if e.symbol not in common_anions and e.group}
 
         # Calculate Anion Fraction
         total_atoms = sum(target_comp.values())
@@ -1188,11 +1194,9 @@ class ProtoCSP:
         anion_fraction = anion_atoms / total_atoms if total_atoms > 0 else 0
 
         # DECISION: Metal Path vs Oxide Path
-        # If anions are present but < 10%, we treat it as an Alloy (Metal Path)
         is_target_oxide_or_salt = (len(target_anions) > 0) and (anion_fraction >= 0.10)
 
         path_str = "OXIDE/SALT" if is_target_oxide_or_salt else "METAL/ALLOY"
-        # Only print this once per major call (heuristic to avoid spam in loops)
         if len(entries) > 10:
             print(f"[DEBUG] Ranking: Target is {path_str} (Anion Fraction: {anion_fraction:.2%})")
 
@@ -1203,76 +1207,73 @@ class ProtoCSP:
             energy = entry.get('energy_per_atom')
             if energy is None: energy = float('inf')
 
-            # Parse prototype composition to get its elements
             try:
                 proto_comp = Composition(f_str)
-                proto_elements = {e.symbol for e in proto_comp.elements}
-                proto_cations = {e.symbol for e in proto_comp.elements if e.symbol not in common_anions}
-                proto_anions = {e.symbol for e in proto_comp.elements if e.symbol in common_anions}
+                proto_elements = set(proto_comp.elements)
+                proto_cations = {e.symbol for e in proto_elements if e.symbol not in common_anions}
+                proto_anions = {e.symbol for e in proto_elements if e.symbol in common_anions}
+                proto_cation_groups = {e.group for e in proto_elements if e.symbol not in common_anions and e.group}
             except:
-                proto_elements = set()
-                proto_cations = set()
-                proto_anions = set()
+                proto_elements, proto_cations, proto_anions, proto_cation_groups = set(), set(), set(), set()
 
             proto_has_anion = len(proto_anions) > 0
-
             score = 0
 
-            # --- CRITERIA 1: CHEMICAL COMPATIBILITY (HIGHEST PRIORITY) ---
-            # For oxides/salts: prioritize matching cation elements
+            # --- CRITERIA 1: CHEMICAL COMPATIBILITY ---
             if is_target_oxide_or_salt:
-                # Count how many cations match
-                cation_overlap = len(target_cations & proto_cations)
-                # CRITICAL: This is the most important factor for perovskites
-                score += (cation_overlap * 500)  # Increased from 50 to 500
-
-                # Bonus if ALL target cations are present
-                if target_cations and target_cations.issubset(proto_cations):
-                    score += 1000
-
-                # Penalize if prototype has cations not in target (less relevant)
-                extra_cations = len(proto_cations - target_cations)
-                score -= (extra_cations * 100)
-
-                # Check anion match
+                
+                # 1. Anion Matching (Boosted priority to preserve framework topology)
                 target_main_anion = list(target_anions)[0] if target_anions else ''
                 if target_main_anion and target_main_anion in proto_anions:
-                    score += 300  # Increased from 200
+                    score += 1000  # Fluorides map to Fluorides, Oxides to Oxides
                 elif proto_has_anion:
                     score += 50
                 else:
-                    # Prototype has no anions but target does - bad match
-                    score -= 2000
+                    score -= 2000  # Penalize purely metallic frameworks
+
+                # 2. Exact Cation Matches
+                cation_overlap = len(target_cations & proto_cations)
+                score += (cation_overlap * 500)
+
+                # 3. Periodic Group Matches (The missing link for transmutations)
+                group_overlap = len(target_cation_groups & proto_cation_groups)
+                score += (group_overlap * 200)
+
+                # 4. Subset and Extra Penalties
+                if target_cations and target_cations.issubset(proto_cations):
+                    score += 1000
+                extra_cations = len(proto_cations - target_cations)
+                score -= (extra_cations * 100)
+
             else:
-                # Metal Path: We WANT metallic parents with matching elements
+                # Metal Path
                 if proto_has_anion:
-                    score -= 2000  # Heavily penalize oxides (increased from 1000)
+                    score -= 2000
                 else:
-                    score += 200   # Reward pure metals/intermetallics
+                    score += 200
 
-                # Count element overlap (excluding anions)
                 metal_overlap = len(target_cations & proto_cations)
-                score += (metal_overlap * 500)  # Increased from 50 to 500
+                score += (metal_overlap * 500)
+                
+                group_overlap = len(target_cation_groups & proto_cation_groups)
+                score += (group_overlap * 200)
 
-                # Bonus if ALL target metals are present
                 if target_cations and target_cations.issubset(proto_cations):
                     score += 1000
 
-            # --- CRITERIA 2: ENERGY (SECONDARY) ---
-            # Energy is now much less important than chemical compatibility
-            # Scale energy contribution to be smaller
+            # --- CRITERIA 2: ENERGY TIE-BREAKER ---
+            # If energy is negative, subtracting it adds to the score. 
+            # Multiplied by 5 to give it a slightly stronger pull among chemically identical prototypes.
             if energy != float('inf'):
-                score -= (energy * 0.1)  # Reduced weight from 1.0 to 0.1
+                score -= (energy * 5.0)  
 
             scored_entries.append((score, entry))
 
         # Sort descending
         scored_entries.sort(key=lambda x: x[0], reverse=True)
 
-        # VERBOSE: Print top 3 winners to see why they won
         if len(scored_entries) > 0:
             top_3 = scored_entries[:3]
-            print('[DEBUG] Ranking: Top 10 candidates (score, formula, id, energy) -> ',[[x[0], x[1]['reduced_formula'], x[1]['id'], x[1]['energy_per_atom']] for x in scored_entries[:10]])
             debug_strs = [f"{x[1].get('reduced_formula')}-{x[1].get('id')}(Score={x[0]:.1f})" for x in top_3]
             print(f"[DEBUG] Ranking: Top candidates -> {', '.join(debug_strs)}")
 
