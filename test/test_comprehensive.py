@@ -6,24 +6,21 @@ Tests the tool with:
 1. Simple baseline structures (sanity check)
 2. Simple alloys, carbides, and nitrides (FeNi, TiC, etc.)
 3. Fractional perovskite compositions
-4. Complex steel alloy compositions from CSV
-
-Features:
-- Verbose failure analysis (checks if prototypes exist in the library).
-- Detailed timing and candidate counts.
-- Progression from simple to complex structures.
+4. Symmetrized enumeration (Enumlib)
+5. Complex steel alloy compositions (FPS vs SQS)
+6. MLIP Integration Workflow
 """
 
 import os
 import sys
-import pandas as pd
 import subprocess
 import time
 import re
 from pathlib import Path
 
-# Add parent directory to path for imports
-sys.path.append('.')
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 
 # Try importing pymatgen for the analysis logic
 try:
@@ -32,7 +29,7 @@ except ImportError:
     print("Error: Pymatgen not installed.")
     sys.exit(1)
 
-from lemat_unique_dataset.ProtoCSP.core import ProtoCSP
+from protocsp.core import ProtoCSP
 
 
 def analyze_failure(library_source, comp_str):
@@ -59,7 +56,6 @@ def analyze_failure(library_source, comp_str):
                     f"but element substitution failed (likely due to electronegativity mismatch).")
 
         # 2. Check Recursive Reduction Path (The 'Base Structure' logic)
-        # We simulate the logic used in ProtoCSP._find_base_structure
         elements_sorted = sorted(target_comp.elements, key=lambda e: target_comp.get_atomic_fraction(e))
         amounts = {e: target_comp.get(e) for e in target_comp.elements}
         
@@ -71,7 +67,6 @@ def analyze_failure(library_source, comp_str):
         for _ in range(len(elements_sorted) + 1):
             if not amounts: break
             
-            # Create dummy composition to check formula class (e.g. "A", "AB")
             dummy_comp = Composition({e: 1.0 for e in amounts.keys()})
             curr_anon = dummy_comp.anonymized_formula
             reduction_trace.append(curr_anon)
@@ -81,7 +76,6 @@ def analyze_failure(library_source, comp_str):
                 found_proto = curr_anon
                 break 
 
-            # Remove smallest
             remaining = [e for e in elements_sorted if e in amounts]
             if not remaining: break
             del amounts[remaining[0]]
@@ -103,9 +97,7 @@ def test_simple_structures():
     print("TESTING SIMPLE BASELINE STRUCTURES")
     print("=" * 80)
 
-    test_compositions = [
-        "NaCl", "Fe", "SrTiO3", "MgO", "GaAs"
-    ]
+    test_compositions = ["NaCl", "Fe", "SrTiO3", "MgO", "GaAs"]
 
     library_path = "lemat_formula_indexed"
     if not os.path.exists(library_path):
@@ -117,7 +109,6 @@ def test_simple_structures():
     print("-" * 80)
 
     results = []
-
     for comp in test_compositions:
         print(f"Testing: {comp:<30}", end="", flush=True)
         try:
@@ -135,12 +126,9 @@ def test_simple_structures():
                 reason = analyze_failure(library_path, comp)
                 print(f"  >>> REASON: {reason}")
             
-            # --- UPDATED PRINTING LOGIC FOR DICTS ---
             for i, entry in enumerate(candidates):
                 struct = entry['structure']
                 e_val = entry.get('energy_per_atom')
-                
-                # Format energy string
                 e_str = f"{e_val:.3f} eV/atom" if e_val is not None else "N/A (Generated)"
                 src_id = entry.get('id') or entry.get('parent_id', 'Unknown')
                 
@@ -150,11 +138,7 @@ def test_simple_structures():
                 print(f"          Volume: {struct.volume:.1f} A^3")
                 print(f"          SpaceG: {struct.get_space_group_info()[0]}")
 
-            results.append({
-                'composition': comp, 'success': success, 
-                'candidates': len(candidates), 'time': elapsed, 'reason': reason
-            })
-
+            results.append({'composition': comp, 'success': success, 'candidates': len(candidates), 'time': elapsed, 'reason': reason})
         except Exception as e:
             print(f"[ERROR] {e}")
             results.append({'composition': comp, 'success': False, 'candidates': 0, 'time': 0, 'reason': str(e)})
@@ -167,21 +151,13 @@ def test_simple_alloys():
     print("TESTING SIMPLE ALLOYS, CARBIDES, AND NITRIDES")
     print("=" * 80)
 
-    test_compositions = [
-        "FeNi", "CuZn", "TiC", "NbN", "WC"
-    ]
+    test_compositions = ["FeNi", "CuZn", "TiC", "NbN", "WC"]
 
     library_path = "lemat_formula_indexed"
-    if not os.path.exists(library_path):
-        print(f"Error: Database folder '{library_path}' not found.")
-        return []
-
-    print(f"Using library database: {library_path}/")
     pcsp = ProtoCSP(library_path)
     print("-" * 80)
 
     results = []
-
     for comp in test_compositions:
         print(f"Testing: {comp:<30}", end="", flush=True)
         try:
@@ -199,34 +175,24 @@ def test_simple_alloys():
                 reason = analyze_failure(library_path, comp)
                 print(f"  >>> REASON: {reason}")
 
-            # Print candidate details
             for i, entry in enumerate(candidates):
                 struct = entry['structure']
-
-                # Extract Metadata
                 src_id = entry.get('id')
                 parent_form = entry.get('parent_formula')
                 method = entry.get('method', 'Unknown')
                 e_val = entry.get('energy_per_atom')
                 e_str = f"{e_val:.3f} eV/atom" if e_val is not None else "N/A"
 
-                # Construct Source String
                 source_str = src_id
-                if parent_form:
-                    source_str += f" (Base: {parent_form})"
+                if parent_form: source_str += f" (Base: {parent_form})"
 
                 print(f"      [{i+1}] {struct.composition.reduced_formula}")
                 print(f"          Source: {source_str}")
-                if method != 'Unknown':
-                    print(f"          Method: {method}")
+                if method != 'Unknown': print(f"          Method: {method}")
                 print(f"          Energy: {e_str}")
                 print(f"          Volume: {struct.volume:.1f} A^3")
 
-            results.append({
-                'composition': comp, 'success': success,
-                'candidates': len(candidates), 'time': elapsed, 'reason': reason
-            })
-
+            results.append({'composition': comp, 'success': success, 'candidates': len(candidates), 'time': elapsed, 'reason': reason})
         except Exception as e:
             print(f"[ERROR] {e}")
             results.append({'composition': comp, 'success': False, 'candidates': 0, 'time': 0, 'reason': str(e)})
@@ -234,9 +200,9 @@ def test_simple_alloys():
     return results
 
 def test_fractional_perovskites():
-    """Test fractional perovskite compositions."""
+    """Test fractional perovskite compositions (Default Farthest Point Sampling)."""
     print("\n" + "=" * 80)
-    print("TESTING FRACTIONAL PEROVSKITE COMPOSITIONS")
+    print("TESTING FRACTIONAL PEROVSKITE COMPOSITIONS (FPS)")
     print("=" * 80)
 
     test_compositions = [
@@ -249,7 +215,6 @@ def test_fractional_perovskites():
     print("-" * 80)
 
     results = []
-
     for comp in test_compositions:
         print(f"Testing: {comp:<30}", end="", flush=True)
         try:
@@ -267,111 +232,157 @@ def test_fractional_perovskites():
                 reason = analyze_failure(library_path, comp)
                 print(f"  >>> REASON: {reason}")
 
-            # --- UPDATED PRINTING LOGIC FOR DICTS ---
             for i, entry in enumerate(candidates):
                 struct = entry['structure']
-                
-                # Extract Metadata
                 src_id = entry.get('id')
                 parent_form = entry.get('parent_formula')
                 method = entry.get('method', 'Unknown')
-                e_val = entry.get('energy_per_atom')
-                e_str = f"{e_val:.3f} eV/atom" if e_val is not None else "N/A"
                 
-                # Construct Source String
                 source_str = src_id
-                if parent_form:
-                    source_str += f" (Base: {parent_form})"
+                if parent_form: source_str += f" (Base: {parent_form})"
                 
                 print(f"      [{i+1}] {struct.composition.reduced_formula}")
                 print(f"          Source: {source_str}")
                 print(f"          Method: {method}")
-                print(f"          Energy: {e_str}")
                 print(f"          Volume: {struct.volume:.1f} A^3")
 
-            results.append({
-                'composition': comp, 'success': success, 
-                'candidates': len(candidates), 'time': elapsed, 'reason': reason
-            })
-
+            results.append({'composition': comp, 'success': success, 'candidates': len(candidates), 'time': elapsed, 'reason': reason})
         except Exception as e:
             print(f"[ERROR] {e}")
             results.append({'composition': comp, 'success': False, 'candidates': 0, 'time': 0, 'reason': str(e)})
 
     return results
-def test_steel_compositions():
-    """Test steel compositions from CSV."""
+
+def test_symmetrize_perovskite():
+    """Test the --symmetrize flag explicitly to ensure enumlib runs correctly."""
     print("\n" + "=" * 80)
-    print("TESTING STEEL COMPOSITIONS FROM CSV")
+    print("TESTING SYMMETRIZE ENUMERATION ON PEROVSKITE")
     print("=" * 80)
 
-    csv_path = "test/matbench_steels_featurizedMM2020Comp.csv"
-
-    try:
-        df = pd.read_csv(csv_path)
-        print(f"Loaded {len(df)} compositions from CSV")
-        # Select first 5 compositions to save time
-        test_comps = df.head(5)['composition'].tolist()
-    except Exception as e:
-        print(f"Error loading CSV: {e}")
-        test_comps = [
-            "Fe0.8C0.1Mn0.05Cr0.03Ni0.02",
-            "Fe0.75C0.15Si0.05Mn0.03Cr0.02"
-        ]
+    comp = "La0.5Sr0.5MnO3"
+    library_path = "lemat_formula_indexed"
+    pcsp = ProtoCSP(library_path)
+    print("-" * 80)
 
     results = []
+    print(f"Testing: {comp:<30} [Mode: SYMMETRIZE]", end="", flush=True)
+    try:
+        start_time = time.time()
+        candidates = pcsp.generate(comp, top_k=3, symmetrize=True)
+        elapsed = time.time() - start_time
 
-    for comp in test_comps:
-        print(f"Testing: {comp:<30}", end="", flush=True)
-        try:
-            # We must use subprocess here to test CLI argument passing.
-            # Updated to use the indexed folder instead of rebuilding.
+        success = len(candidates) > 0
+        status = "SUCCESS" if success else "FAILED"
+        
+        print(f"\n[{status}] {len(candidates)} candidates ({elapsed:.2f}s)")
+
+        reason = "N/A"
+        if not success:
+            reason = analyze_failure(library_path, comp)
+            print(f"  >>> REASON: {reason}")
+
+        for i, entry in enumerate(candidates):
+            struct = entry['structure']
+            src_id = entry.get('id')
+            parent_form = entry.get('parent_formula')
+            method = entry.get('method', 'Unknown')
             
+            source_str = src_id
+            if parent_form: source_str += f" (Base: {parent_form})"
+            
+            print(f"      [{i+1}] {struct.composition.reduced_formula}")
+            print(f"          Source: {source_str}")
+            print(f"          Method: {method}")
+            print(f"          Volume: {struct.volume:.1f} A^3")
+
+        results.append({
+            'composition': f"{comp} (SYMMETRIZE)", 'success': success, 
+            'candidates': len(candidates), 'time': elapsed, 'reason': reason
+        })
+
+    except Exception as e:
+        print(f"[ERROR] {e}")
+        results.append({'composition': f"{comp} (SYMMETRIZE)", 'success': False, 'candidates': 0, 'time': 0, 'reason': str(e)})
+
+    return results
+
+def test_steel_compositions():
+    """Test a complex steel composition (FPS vs SQS)."""
+    print("\n" + "=" * 80)
+    print("TESTING COMPLEX STEEL ALLOY (FPS vs SQS)")
+    print("=" * 80)
+
+    comp = "Fe0.7C0.2Mn0.05Ni0.03Mo0.02"
+    results = []
+
+    # Loop twice: First without SQS (FPS), then with SQS
+    for use_sqs in [False, True]:
+        mode_str = "SQS" if use_sqs else "FPS"
+        print(f"Testing: {comp:<30} [Mode: {mode_str}]\n", end="", flush=True)
+        
+        try:
+            main_script_path = os.path.join(parent_dir, "protocsp", "main.py")
             cmd = [
-                sys.executable, "main.py", comp,
-                "--index", "lemat_formula_indexed", # Use the folder database
+                sys.executable, main_script_path, comp,
+                "--index", "lemat_formula_indexed",
                 "--verbose",
                 "--output-dir", "test_outputs",
-                "--top-k", "3"
+                "--top-k", "3",
+                "--save-cif"
             ]
 
-            start_time = time.time()
-            result = subprocess.run(cmd, capture_output=True, text=True, cwd=".")
-            elapsed = time.time() - start_time
+            if use_sqs:
+                cmd.extend(["--sqs", "--sqs-iterations", "50000"])
 
+            start_time = time.time()
+            process = subprocess.Popen(
+                cmd, 
+                stdout=subprocess.PIPE, 
+                stderr=subprocess.STDOUT,
+                text=True, 
+                cwd="."
+            )
+            
+            captured_output = []
             candidates = 0
-            # Parse output for candidate count
-            # Look for "GENERATION COMPLETE (N candidates in X.XXs)"
-            for line in result.stdout.split('\n'):
+            
+            for line in process.stdout:
+                print(line, end="")  # Print live to the terminal
+                captured_output.append(line)
+                
                 if "GENERATION COMPLETE" in line and "candidates" in line:
                     try:
-                        # Extract number from "(N candidates in X.XXs)"
                         match = line.split('(')[1].split('candidates')[0].strip()
                         candidates = int(match)
                     except:
                         pass
 
-            success = (result.returncode == 0) and (candidates > 0)
+            process.wait()
+            elapsed = time.time() - start_time
+
+            has_candidates = candidates > 0
+            sqs_success = True
+            if use_sqs and has_candidates:
+                sqs_success = any("applying sqs generation" in line.lower() for line in captured_output)
+
+            success = (process.returncode == 0) and has_candidates and sqs_success
             status = "SUCCESS" if success else "FAILED"
             
-            print(f"[{status}] {candidates} candidates ({elapsed:.2f}s)")
+            print(f"\n[{status}] {candidates} candidates ({elapsed:.2f}s)\n" + "-"*80 + "\n")
 
             reason = "N/A"
             if not success:
-                if result.returncode != 0:
-                    reason = f"CLI Process Crashed. Stderr: {result.stderr.strip()[:100]}..."
-                elif candidates == 0:
-                    # Try to find a DEBUG line in stdout
-                    debug_lines = [l for l in result.stdout.split('\n') if "DEBUG" in l]
-                    if debug_lines:
-                        reason = f"Log: {debug_lines[-1].strip()}"
-                    else:
-                        reason = "No candidates found."
-                
+                if process.returncode != 0:
+                    reason = f"CLI Process Crashed. Return code: {process.returncode}"
+                elif not has_candidates:
+                    debug_lines = [l for l in captured_output if "DEBUG" in l]
+                    reason = f"Log: {debug_lines[-1].strip()}" if debug_lines else "No candidates found."
+                elif use_sqs and not sqs_success:
+                    reason = "SQS Fallback Triggered. Failed to use requested SQS method."
                 print(f"  >>> REASON: {reason}")
 
             results.append({
-                'composition': comp,
+                'composition': f"{comp} ({mode_str})",
                 'success': success,
                 'candidates': candidates,
                 'time': elapsed,
@@ -381,7 +392,109 @@ def test_steel_compositions():
         except Exception as e:
             print(f"[ERROR] {e}")
             results.append({
-                'composition': comp,
+                'composition': f"{comp} ({mode_str})", 'success': False,
+                'candidates': 0, 'time': 0, 'reason': f"Exception: {str(e)}"
+            })
+
+    return results
+
+def test_mlip_workflow():
+    """Test MLIP integration on both Enumlib (Perovskite) and SQS (Steel)."""
+    print("\n" + "=" * 80)
+    print("TESTING MLIP INTEGRATION (MACE)")
+    print("=" * 80)
+    
+    tasks = [
+        {
+            "comp": "La0.5Sr0.5MnO3",
+            "desc": "Symmetrized Perovskite",
+            "extra_args": ["--symmetrize"]
+        },
+        {
+            "comp": "Fe0.7C0.2Mn0.05Ni0.03Mo0.02",
+            "desc": "SQS Metal Alloy",
+            "extra_args": ["--sqs", "--sqs-iterations", "50000"]
+        }
+    ]
+    
+    results = []
+    
+    for task in tasks:
+        comp = task["comp"]
+        desc = task["desc"]
+        print(f"Testing: {comp:<30} [MLIP: {desc}]\n", end="", flush=True)
+        
+        try:
+            main_script_path = os.path.join(parent_dir, "protocsp", "main.py")
+            cmd = [
+                sys.executable, main_script_path, comp,
+                "--index", "lemat_formula_indexed",
+                "--verbose",
+                "--output-dir", "test_outputs",
+                "--top-k", "2",
+                "--save-cif",
+                "--mlip", 
+                "--engine", "mace"
+            ] + task["extra_args"]
+
+            start_time = time.time()
+            process = subprocess.Popen(
+                cmd, 
+                stdout=subprocess.PIPE, 
+                stderr=subprocess.STDOUT, 
+                text=True, 
+                cwd="."
+            )
+            
+            captured_output = []
+            candidates = 0
+            mlip_success = False
+            
+            for line in process.stdout:
+                print(line, end="")  
+                captured_output.append(line) 
+                
+                if "GENERATION COMPLETE" in line and "candidates" in line:
+                    try:
+                        match = line.split('(')[1].split('candidates')[0].strip()
+                        candidates = int(match)
+                    except:
+                        pass
+                
+                if "MLIP Evaluation finished" in line or "E_form:" in line:
+                    mlip_success = True
+
+            process.wait()
+            elapsed = time.time() - start_time
+
+            success = (process.returncode == 0) and (candidates > 0) and mlip_success
+            status = "SUCCESS" if success else "FAILED"
+            
+            print(f"\n[{status}] {candidates} candidates evaluated with MLIP ({elapsed:.2f}s)\n" + "-"*80 + "\n")
+
+            reason = "N/A"
+            if not success:
+                if process.returncode != 0:
+                    reason = f"CLI Process Crashed. Return code: {process.returncode}"
+                elif candidates == 0:
+                    reason = "No candidates found."
+                elif not mlip_success:
+                    reason = "MLIP evaluation failed or was skipped (Check MACE installation)."
+                
+                print(f"  >>> REASON: {reason}")
+
+            results.append({
+                'composition': f"{comp} (MLIP {desc})",
+                'success': success,
+                'candidates': candidates,
+                'time': elapsed,
+                'reason': reason
+            })
+
+        except Exception as e:
+            print(f"[ERROR] {e}")
+            results.append({
+                'composition': f"{comp} (MLIP {desc})",
                 'success': False,
                 'candidates': 0,
                 'time': 0,
@@ -390,31 +503,25 @@ def test_steel_compositions():
 
     return results
 
-
 def main():
     print("=" * 80)
     print("CRYSTALGUESSER COMPREHENSIVE DIAGNOSTIC TEST SUITE")
     print("=" * 80)
     print("Testing increasingly complex compositions with failure analysis...")
 
-    # Test 1: Simple Baseline
     simple_results = test_simple_structures()
-
-    # Test 2: Simple Alloys, Carbides, Nitrides
     alloy_results = test_simple_alloys()
-
-    # Test 3: Fractional perovskites
     perovskite_results = test_fractional_perovskites()
-
-    # Test 4: Steel compositions
+    symmetrize_results = test_symmetrize_perovskite()
     steel_results = test_steel_compositions()
+    mlip_results = test_mlip_workflow()
 
     # Summary
     print("\n" + "=" * 80)
     print("TEST SUMMARY")
     print("=" * 80)
 
-    all_results = simple_results + alloy_results + perovskite_results + steel_results
+    all_results = simple_results + alloy_results + perovskite_results + symmetrize_results + steel_results + mlip_results
 
     total_tests = len(all_results)
     successful_tests = sum(1 for r in all_results if r['success'])
@@ -446,7 +553,7 @@ def main():
 
         for r in all_results:
             status = "SUCCESS" if r['success'] else "FAILED"
-            file.write(f"{r['composition']:<30} | {status} | {r['reason']}\n")
+            file.write(f"{r['composition']:<40} | {status} | {r['reason']}\n")
 
     print(f"\nDetailed results written to: {output_file}")
 

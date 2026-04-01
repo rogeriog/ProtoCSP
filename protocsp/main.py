@@ -219,6 +219,10 @@ def main():
     parser.add_argument('--randomize-scaling', action='store_true', help='Slightly randomize supercell dimensions for more diversity')
     parser.add_argument('--symmetrize', action='store_true', help='Use rigorous enumeration to find high-symmetry ordered structures instead of farthest-point sampling')
 
+    parser.add_argument('--sqs', action='store_true', help='Use SQS generation for solid solutions')
+    parser.add_argument('--sqs-mode', type=str, default='random', choices=['random', 'systematic', 'cluster'], help='SQS generation mode (default: random)')
+    parser.add_argument('--sqs-iterations', type=int, default=100000, help='Iterations for SQS (default: 100000)')
+
     parser.add_argument('--save-cif', action='store_true')
     parser.add_argument('--verbose', action='store_true')
     parser.add_argument('--index', default='lemat_formula_indexed', help='Library path')
@@ -277,7 +281,10 @@ def main():
         randomize_scaling=args.randomize_scaling,
         manual_base_struct=manual_base_struct,
         manual_base_id=manual_base_id,
-        symmetrize=args.symmetrize
+        symmetrize=args.symmetrize,
+        sqs=args.sqs,
+        sqs_mode=args.sqs_mode,
+        sqs_iterations=args.sqs_iterations
     )
     generation_time = time.time() - start_time
 

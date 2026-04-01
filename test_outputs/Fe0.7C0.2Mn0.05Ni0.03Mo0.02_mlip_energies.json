@@ -1,0 +1,28 @@
+[
+    {
+        "rank": 1,
+        "formula": "Mn3Fe58Ni2MoC13",
+        "source_id": "doped_from_mp-1271068_sqs_1",
+        "parent_formula": "Fe",
+        "method": "SQS Generation (Obj: 2.5057) + Interstitials",
+        "space_group": "P1",
+        "num_sites": 77,
+        "volume_A3": 824.129,
+        "formation_energy_per_atom_eV": 0.16611627289281294,
+        "total_energy_per_atom_eV": -8.274053156496091,
+        "total_energy_eV": -637.102093050199
+    },
+    {
+        "rank": 2,
+        "formula": "Mn3Fe58Ni2MoC13",
+        "source_id": "doped_from_mp-1271068_sqs_2",
+        "parent_formula": "Fe",
+        "method": "SQS Generation (Obj: 2.5057) + Interstitials",
+        "space_group": "P1",
+        "num_sites": 77,
+        "volume_A3": 826.837,
+        "formation_energy_per_atom_eV": 0.17641984829484514,
+        "total_energy_per_atom_eV": -8.263749581094059,
+        "total_energy_eV": -636.3087177442425
+    }
+]

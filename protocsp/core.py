@@ -99,7 +99,7 @@ class ProtoCSP:
 
     def generate(self, target_composition_str: str, max_bases: int = 3, top_k: int = 5, min_atoms: int = 20, 
                  randomize_scaling: bool = False, manual_base_struct: Optional[Structure] = None, manual_base_id: str = "",
-                 symmetrize: bool = False) -> List[Dict[str, Any]]:
+                 symmetrize: bool = False, sqs: bool = False, sqs_mode: str = 'random', sqs_iterations: int = 100000) -> List[Dict[str, Any]]:
         """
         Main entry point. Generates candidates.
         Returns: List of Dictionaries [{'structure': S, 'id': '...', 'energy_per_atom': ...}, ...]
@@ -170,7 +170,10 @@ class ProtoCSP:
                         min_atoms=current_min_atoms if not symmetrize else 1,
                         randomize_scaling=randomize_scaling if not symmetrize else False,
                         symmetrize=symmetrize,
-                        top_k=top_k
+                        top_k=top_k,
+                        sqs=sqs,
+                        sqs_mode=sqs_mode,
+                        sqs_iterations=sqs_iterations
                     )
                     if candidates:
                         # Use extend because candidates is now a list
@@ -299,7 +302,10 @@ class ProtoCSP:
                             min_atoms=min_atoms if not symmetrize else 1,
                             randomize_scaling=randomize_scaling if not symmetrize else False,
                             symmetrize=symmetrize,
-                            top_k=top_k
+                            top_k=top_k,
+                            sqs=sqs,                     
+                            sqs_mode=sqs_mode,
+                            sqs_iterations=sqs_iterations
                         )
                         if candidates_list:
                             # Use extend because it now returns a list
@@ -409,7 +415,8 @@ class ProtoCSP:
             return None
 
     def _generate_doped_structure(self, base_entry: Dict[str, Any], major_elements: List[Element], target_comp: Composition, 
-                                  min_atoms: int = 20, randomize_scaling: bool = False, symmetrize: bool = False, top_k: int = 1) -> Optional[List[Dict[str, Any]]]:
+                                  min_atoms: int = 20, randomize_scaling: bool = False, symmetrize: bool = False, top_k: int = 1,
+                                  sqs: bool = False, sqs_mode: str = 'random', sqs_iterations: int = 100000) -> Optional[List[Dict[str, Any]]]:
         """
         Generates doped supercell. Handles 1->N element mapping (Solid Solution Base).
         """
@@ -565,18 +572,19 @@ class ProtoCSP:
             else:
                 interstitial_tasks.extend([dopant] * count)
 
-        # 5. Targeted Substitution (Symmetrized or Farthest-Point)
+        # 5. Targeted Substitution (Symmetrized, SQS, or Farthest-Point)
         if substitution_tasks:
             symmetrize_success = False
+            sqs_success = False
             
+            # Group substitutions by host to handle multiple dopants on the same site type
+            host_to_mix = defaultdict(dict)
+            for dopant, host, count in substitution_tasks:
+                host_to_mix[host][dopant] = count
+
             if symmetrize:
                 print(f"[DEBUG] Doping: Applying sequential symmetry-preserving enumeration (symmetrize=True)...")
                 
-                # Group substitutions by host to handle multiple dopants on the same site type
-                host_to_mix = defaultdict(dict)
-                for dopant, host, count in substitution_tasks:
-                    host_to_mix[host][dopant] = count
-
                 # --- UPFRONT COMBINATORIAL CHECK ---
                 # Impede it to hang for minutes/hours.
                 MAX_COMBINATIONS = 200_000 
@@ -680,9 +688,116 @@ class ProtoCSP:
                     except Exception as e:
                         print(f"[WARNING] Sequential enumeration failed: {e}. Falling back to Farthest-Point Sampling.")
                         symmetrize_success = False
+            # 
+            elif sqs:
+                print(f"[DEBUG] Doping: Applying SQS generation ({sqs_iterations:,} iterations)...")
+                try:
+                    from sqsgenerator import parse_config, optimize, to_pymatgen
+                    
+                    # 1. Clean the supercell so it only has 100% pure sites
+                    clean_supercell = supercell.copy()
+                    for i, site in enumerate(clean_supercell):
+                        host_el = max(site.species, key=site.species.get)
+                        clean_supercell.replace(i, host_el)
+                        
+                    # 2. Build config_dict using pure Python types
+                    config_dict = {
+                        'structure': {
+                            'lattice': clean_supercell.lattice.matrix.tolist(),
+                            'coords': [site.frac_coords.tolist() for site in clean_supercell.sites],
+                            'species': [site.specie.symbol for site in clean_supercell.sites]
+                        },
+                        'iterations': int(sqs_iterations),
+                        'max_output_configurations': int(top_k),
+                        'mode': 'random',
+                        'shell_weights': {1: 1.0}
+                    }
 
-            # Farthest-Point Sampling Fallback (runs if --symmetrize is omitted OR if enumeration fails)
-            if not symmetrize_success:
+                    # 3. Format composition dictionary
+                    if len(host_to_mix) == 1:
+                        # Single sublattice doping (e.g. Steel) -> Use flat dict + 'which'
+                        host = list(host_to_mix.keys())[0]
+                        dopant_counts = host_to_mix[host]
+                        
+                        n_sites = sum(1 for site in clean_supercell if site.specie.symbol == host.symbol)
+                        total_dopants = sum(dopant_counts.values())
+                        rem_host = n_sites - total_dopants
+                        
+                        flat_comp = {host.symbol: int(rem_host)}
+                        for dopant, count in dopant_counts.items():
+                            flat_comp[dopant.symbol] = int(count)
+                            
+                        config_dict['composition'] = flat_comp
+                        config_dict['which'] = host.symbol
+                    else:
+                        # Multi-sublattice doping (e.g. Perovskites) -> Use nested dicts
+                        sqs_comp = {}
+                        for host, dopant_counts in host_to_mix.items():
+                            n_sites = sum(1 for site in clean_supercell if site.specie.symbol == host.symbol)
+                            total_dopants = sum(dopant_counts.values())
+                            rem_host = n_sites - total_dopants
+                            
+                            sub_dict = {host.symbol: int(rem_host)}
+                            for dopant, count in dopant_counts.items():
+                                sub_dict[dopant.symbol] = int(count)
+                            sqs_comp[host.symbol] = sub_dict
+                            
+                        config_dict['composition'] = sqs_comp
+
+                    # 4. Parse config and catch hidden C++ ParseErrors
+                    parsed = parse_config(config_dict)
+                    if hasattr(parsed, 'msg'):
+                        raise ValueError(f"sqsgenerator parse error on key '{parsed.key}': {parsed.msg}")
+                        
+                    # 5. Run optimization
+                    result_pack = optimize(parsed)
+                    
+                    # 6. Extract candidates using the correct iterable API
+                    sqs_candidates = []
+                    rank = 1
+                    
+                    # result_pack yields (objective_value, list_of_solutions)
+                    for obj_val, solutions in result_pack:
+                        for solution in solutions:
+                            if len(sqs_candidates) >= top_k:
+                                break
+                                
+                            # Handle API differences (sometimes it's a method, sometimes a property)
+                            struct_raw = solution.structure() if callable(solution.structure) else solution.structure
+                            struct = to_pymatgen(struct_raw)
+                            
+                            # Handle Interstitials sequentially AFTER SQS maps the substitutional lattice
+                            if interstitial_tasks:
+                                struct = self._insert_interstitials(struct, interstitial_tasks)
+                                
+                            sqs_candidates.append({
+                                'structure': struct,
+                                'id': f"doped_from_{base_entry.get('id', 'unknown')}_sqs_{rank}",
+                                'parent_id': base_entry.get('id'),
+                                'parent_formula': base_entry.get('reduced_formula'),
+                                'parent_space_group': base_entry.get('parent_space_group', 'Unknown'),
+                                'energy_per_atom': None,
+                                'method': f'SQS Generation (Obj: {obj_val:.4f})' + (' + Interstitials' if interstitial_tasks else '')
+                            })
+                            rank += 1
+                            
+                        if len(sqs_candidates) >= top_k:
+                            break
+                    
+                    if not sqs_candidates:
+                         raise ValueError("SQS optimization returned an empty result pack.")
+                         
+                    sqs_success = True
+                    return sqs_candidates
+                    
+                except Exception as e:
+                    import traceback
+                    traceback.print_exc()
+                    print(f"[WARNING] SQS generation failed: {e}. Falling back to Farthest-Point Sampling.")
+                    sqs_success = False
+
+            # Farthest-Point Sampling Fallback (runs if --symmetrize/sqs omitted OR if they fail)
+            if not symmetrize_success and not sqs_success:
                 print(f"[DEBUG] Doping: Applying targeted farthest-point substitution to generate {top_k} candidates...")
                 fps_candidates = []
                 
@@ -698,6 +813,12 @@ class ProtoCSP:
                             i for i, site in enumerate(current_supercell) 
                             if max(site.species, key=site.species.get) == host
                         ]
+
+                        # INTENTIONAL pseudo-randomness for MLIP diversity:
+                        # By resetting placed_sites for each new dopant species, we force atoms of the 
+                        # *same* element to maximize distance (preventing unphysical mono-element clumps), 
+                        # while allowing *different* elements to randomly cluster. This creates diverse 
+                        # local coordination environments across the top_k structures for the MLIP to evaluate.
                         placed_sites = []
                         
                         for _ in range(count):
@@ -1285,15 +1406,30 @@ class ProtoCSP:
         import random
         from collections import defaultdict
         
-        # --- Attempt 1: Rigorous Enumeration ---
-        try:
-            est = EnumerateStructureTransformation(max_cell_size=8, min_cell_size=1)
-            ordered_list = est.apply_transformation(disordered_struct, return_ranked_list=3)
-            if ordered_list:
-                return [d['structure'] for d in ordered_list]
-        except Exception:
-            pass # Fail silently to fallback
-
+        # Cap the multiplier so we don't accidentally expand massive base structures
+        max_multiplier = max(1, min(4, 80 // disordered_struct.num_sites))
+        
+        # --- Attempt 1: Rigorous Enumeration (Sequential Approach) ---
+        # Try finding the smallest possible supercell that satisfies the fractions
+        for test_size in range(1, max_multiplier + 1):
+            try:
+                est = EnumerateStructureTransformation(
+                    min_cell_size=test_size,
+                    max_cell_size=test_size
+                )
+                
+                # return_ranked_list computes Ewald sums. By keeping test_size small, 
+                # the pool of structures remains tiny, making this instant.
+                ordered_list = est.apply_transformation(disordered_struct, return_ranked_list=3)
+                
+                if ordered_list:
+                    # Success! We found the smallest valid ordered cell. Stop here.
+                    return [d['structure'] for d in ordered_list]
+            except Exception:
+                # Enumlib throws an error if this test_size doesn't yield whole integer atoms
+                continue
+                
+        print("[WARNING] Rigorous enumeration failed at all test sizes. Falling back.")
         # --- Attempt 2: Manual Python Fallback ---
         try:
             min_fraction = 1.0

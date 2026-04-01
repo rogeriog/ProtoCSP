@@ -1,0 +1,28 @@
+[
+    {
+        "rank": 1,
+        "formula": "SrLaMn2O6",
+        "source_id": "grouped_from_mp-557795",
+        "parent_formula": "LaMnO3",
+        "method": "Generalized Grouping (Base: LaMnO3)",
+        "space_group": "P-1",
+        "num_sites": 20,
+        "volume_A3": 275.824,
+        "formation_energy_per_atom_eV": -1.9767168529540085,
+        "total_energy_per_atom_eV": -7.37054514064001,
+        "total_energy_eV": -147.4109028128002
+    },
+    {
+        "rank": 2,
+        "formula": "SrLaMn2O6",
+        "source_id": "grouped_from_mp-557795",
+        "parent_formula": "LaMnO3",
+        "method": "Generalized Grouping (Base: LaMnO3)",
+        "space_group": "P2/c",
+        "num_sites": 20,
+        "volume_A3": 314.038,
+        "formation_energy_per_atom_eV": -1.8515746170385867,
+        "total_energy_per_atom_eV": -7.245402904724588,
+        "total_energy_eV": -144.90805809449176
+    }
+]
