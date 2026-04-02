@@ -220,7 +220,7 @@ def main():
 
     parser.add_argument('--save-cif', action='store_true')
     parser.add_argument('--verbose', action='store_true')
-    parser.add_argument('--index', default='lemat_formula_indexed', help='Library path')
+    parser.add_argument('--index', default='lemat_parquet_files/unique_pbe/', help='Library path')
     parser.add_argument('--force-rebuild', action='store_true')
 
     # --- MLIP ARGUMENTS ---

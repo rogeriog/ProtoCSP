@@ -22,6 +22,7 @@ import itertools
 import time
 from typing import Dict, List, Any, Optional, Tuple, Union
 import pandas as pd
+import polars as pl
 import numpy as np
 from tqdm import tqdm
 from collections import defaultdict
@@ -49,22 +50,75 @@ class ProtoCSP:
         self.library_source = library_source
         self.MAX_ATOMS = 1200
         
-        # Check mode
         self.is_folder_mode = False
+        self.is_parquet_mode = False
+        self.parquet_lf = None
+        
         if isinstance(library_source, str):
-            if os.path.isdir(library_source):
+            # NEW: Detect Parquet mode
+            if "parquet" in library_source.lower() or library_source.endswith('.parquet'):
+                self.is_parquet_mode = True
+                
+                # If a folder is provided, target all parquet files inside it
+                pattern = os.path.join(library_source, "*.parquet") if os.path.isdir(library_source) else library_source
+                self.parquet_lf = pl.scan_parquet(pattern)
+                print(f"[INFO] ProtoCSP initialized in Parquet Lazy-Scan mode: {pattern}")
+                
+            # Existing: Detect JSON Folder mode
+            elif os.path.isdir(library_source):
                 self.is_folder_mode = True
                 self._cache = {}
             else:
-                print(f"Warning: {library_source} is not a valid directory.")
+                print(f"Warning: {library_source} is not a valid directory or parquet pattern.")
 
     def _get_entries(self, anon_formula: str) -> List[Dict[str, Any]]:
-        """Helper to fetch entries (metadata + raw structure dict) without instantiation."""
-        # 1. Memory Mode
-        if not self.is_folder_mode:
+        """Helper to fetch entries without instantiation."""
+        
+        # --- 1. Parquet Mode (Polars) ---
+        if getattr(self, 'is_parquet_mode', False):
+            try:
+                # Lazy filter and pull into memory
+                df = self.parquet_lf.filter(
+                    pl.col("chemical_formula_anonymous") == anon_formula
+                ).collect()
+                
+                entries = []
+                for row in df.iter_rows(named=True):
+                    try:
+                        # Build the pymatgen Structure directly from the native Parquet arrays
+                        struct = Structure(
+                            lattice=row["lattice_vectors"],
+                            species=row["species_at_sites"],
+                            coords=row["cartesian_site_positions"],
+                            coords_are_cartesian=True
+                        )
+                        
+                        energy = row.get("energy")
+                        nsites = row.get("nsites")
+                        e_per_atom = energy / nsites if energy is not None and nsites else None
+                        
+                        # Build the entry dict matching the expected ProtoCSP format
+                        entry = {
+                            'structure': struct,  # Already hydrated!
+                            'id': row.get("immutable_id"),
+                            'reduced_formula': row.get("chemical_formula_reduced"),
+                            'energy_per_atom': e_per_atom
+                        }
+                        entries.append(entry)
+                    except Exception as e:
+                        print(f"[DEBUG] Failed to reconstruct {row.get('immutable_id')}: {e}")
+                        continue
+                return entries
+            
+            except Exception as e:
+                print(f"[ERROR] Parquet query failed for {anon_formula}: {e}")
+                return []
+
+        # --- 2. Existing: Memory Mode (Pickle) ---
+        if not getattr(self, 'is_folder_mode', False):
             return self.library_source.get(anon_formula, [])
         
-        # 2. Folder Mode (JSON)
+        # --- 3. Existing: Folder Mode (JSON) ---
         if anon_formula in self._cache:
             return self._cache[anon_formula]
 

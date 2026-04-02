@@ -1,0 +1,835 @@
+start
+Thu Apr  2 13:08:41 CEST 2026
+================================================================================
+TESTING HEA SURFACE ALLOY (SQS + Vacuum + MLIP)
+================================================================================
+[INFO] Generating base BCC Fe (001) surface...
+/gpfs/scratch/acad/htforft/rgouvea/vibroml_runs/vibroml_env/lib/python3.9/site-packages/pymatgen/core/surface.py:952: DeprecationWarning: dict interface is deprecated. Use attribute interface instead
+  initial_structure.add_site_property("bulk_wyckoff", spg_analyzer.get_symmetry_dataset()["wyckoffs"])
+/gpfs/scratch/acad/htforft/rgouvea/vibroml_runs/vibroml_env/lib/python3.9/site-packages/pymatgen/io/cif.py:1721: FutureWarning: We strongly discourage using implicit binary/text `mode`, and this would not be allowed after 2025-06-01. I.e. you should pass t/b in `mode`.
+  with zopen(filename, mode=mode) as file:
+[INFO] Saved pristine surface with 32 atoms to: 
+       /gpfs/scratch/acad/htforft/rgouvea/ProtoCSP_priv/test/fe_bcc_001_surface.cif
+
+Testing: Fe0.6Ni0.15Co0.15Mo0.05Pt0.05  [Mode: SQS + MLIP (Surface)]
+
+================================================================================
+PROTOCSP: Prototype-based Crystal Structure Prediction
+================================================================================
+Target Composition: Fe0.6Ni0.15Co0.15Mo0.05Pt0.05
+Index Path: lemat_parquet_files/unique_pbe/
+[INFO] ProtoCSP initialized in Parquet Lazy-Scan mode: lemat_parquet_files/unique_pbe/*.parquet
+[INFO] Loaded manual base structure from /gpfs/scratch/acad/htforft/rgouvea/ProtoCSP_priv/test/fe_bcc_001_surface.cif
+[DEBUG] Starting guess for Fe0.6Co0.15Ni0.15Mo0.05Pt0.05 (Anon: A0.05B0.05C0.15D0.15E0.6)
+[DEBUG] Strategy: Bypassing database to use manual base structure...
+[DEBUG] Manual base requires complex doping/alloying...
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [1, 1, 1] to approx 20 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+/gpfs/scratch/acad/htforft/rgouvea/ProtoCSP_priv/protocsp/core.py:749: UserWarning: The current version of sqsgenerator is a pre-release. We have introduced breaking changes in versions >= 0.4.*. We are still working on updating the documentation. The last stable version is 0.3 and can be obtained via conda
+  from sqsgenerator import parse_config, optimize, to_pymatgen
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1775128125.897684 4053731 log.h:49] The coordination shell 112 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128125.897727 4053731 log.h:49] The coordination shell 48 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128125.897730 4053731 log.h:49] The coordination shell 10 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128125.897731 4053731 log.h:49] The coordination shell 16 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128125.897733 4053731 log.h:49] The coordination shell 12 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128125.897734 4053731 log.h:49] The coordination shell 16 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [2, 2, 1] to approx 40 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+W0000 00:00:1775128127.627395 4053731 log.h:49] The coordination shell 704 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128127.627404 4053731 log.h:49] The coordination shell 23 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128127.627406 4053731 log.h:49] The coordination shell 64 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [2, 2, 1] to approx 60 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+W0000 00:00:1775128134.281528 4053731 log.h:49] The coordination shell 704 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128134.281538 4053731 log.h:49] The coordination shell 23 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128134.281540 4053731 log.h:49] The coordination shell 64 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [2, 2, 1] to approx 40 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+W0000 00:00:1775128140.946834 4053731 log.h:49] The coordination shell 704 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128140.946843 4053731 log.h:49] The coordination shell 23 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128140.946846 4053731 log.h:49] The coordination shell 64 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [1, 1, 1] to approx 20 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+W0000 00:00:1775128147.597260 4053731 log.h:49] The coordination shell 112 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128147.597268 4053731 log.h:49] The coordination shell 48 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128147.597271 4053731 log.h:49] The coordination shell 10 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128147.597272 4053731 log.h:49] The coordination shell 16 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128147.597274 4053731 log.h:49] The coordination shell 12 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128147.597275 4053731 log.h:49] The coordination shell 16 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [1, 1, 1] to approx 20 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+W0000 00:00:1775128149.328429 4053731 log.h:49] The coordination shell 112 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128149.328437 4053731 log.h:49] The coordination shell 48 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128149.328439 4053731 log.h:49] The coordination shell 10 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128149.328441 4053731 log.h:49] The coordination shell 16 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128149.328442 4053731 log.h:49] The coordination shell 12 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128149.328444 4053731 log.h:49] The coordination shell 16 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [1, 1, 1] to approx 20 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+W0000 00:00:1775128151.059749 4053731 log.h:49] The coordination shell 112 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128151.059757 4053731 log.h:49] The coordination shell 48 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128151.059759 4053731 log.h:49] The coordination shell 10 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128151.059761 4053731 log.h:49] The coordination shell 16 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128151.059763 4053731 log.h:49] The coordination shell 12 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128151.059764 4053731 log.h:49] The coordination shell 16 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [2, 2, 1] to approx 60 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+W0000 00:00:1775128152.798380 4053731 log.h:49] The coordination shell 704 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128152.798389 4053731 log.h:49] The coordination shell 23 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128152.798391 4053731 log.h:49] The coordination shell 64 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Doping: Mapping Target Major [Element Fe] -> Base Sites [Element Fe]
+[DEBUG] Doping: Scaling base [2, 2, 1] to approx 60 atoms.
+[DEBUG] Doping: Element Ni is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Co is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Mo is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Element Pt is SUBSTITUTIONAL. Target: Fe (closest electronegativity).
+[DEBUG] Doping: Applying SQS generation (5,000,000 iterations)...
+W0000 00:00:1775128159.445830 4053731 log.h:49] The coordination shell 704 does not contain an integer number of sites. I hope you know what you are doing
+W0000 00:00:1775128159.445840 4053731 log.h:49] The coordination shell 23 contains no or only one lattice position(s). Increase either "atol" or "rtol" or set the "shell_radii" parameter manually
+W0000 00:00:1775128159.445842 4053731 log.h:49] The coordination shell 64 does not contain an integer number of sites. I hope you know what you are doing
+[DEBUG] Successfully generated 27 structures from manual base.
+[DEBUG] Finalizing 27 candidates...
+[DEBUG] Returning top 3 unique candidates.
+
+================================================================================
+GENERATION COMPLETE (3 candidates in 40.37s)
+
+
+Saving 3 structures to /gpfs/scratch/acad/htforft/rgouvea/ProtoCSP_priv/test/test_surface_outputs/ (Suffix: '_unrelaxed')
+/gpfs/scratch/acad/htforft/rgouvea/vibroml_runs/vibroml_env/lib/python3.9/site-packages/pymatgen/io/cif.py:1721: FutureWarning: We strongly discourage using implicit binary/text `mode`, and this would not be allowed after 2025-06-01. I.e. you should pass t/b in `mode`.
+  with zopen(filename, mode=mode) as file:
+  [1] Saved: Fe0.6Ni0.15Co0.15Mo0.05Pt0.05_manual_base_doping_doped_from_provided_fe_bcc_001_surface_sqs_1_rank_1_unrelaxed.cif
+  [2] Saved: Fe0.6Ni0.15Co0.15Mo0.05Pt0.05_manual_base_doping_doped_from_provided_fe_bcc_001_surface_sqs_2_rank_2_unrelaxed.cif
+  [3] Saved: Fe0.6Ni0.15Co0.15Mo0.05Pt0.05_manual_base_doping_doped_from_provided_fe_bcc_001_surface_sqs_3_rank_3_unrelaxed.cif
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1775128166.538088 4053731 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1775128166.541515 4053731 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1775128166.553277 4053731 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1775128166.553292 4053731 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1775128166.553294 4053731 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1775128166.553295 4053731 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+/gpfs/scratch/acad/htforft/rgouvea/vibroml_runs/vibroml_env/lib/python3.9/site-packages/e3nn/o3/_wigner.py:10: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  _Jd, _W3j_flat, _W3j_indices = torch.load(os.path.join(os.path.dirname(__file__), 'constants.pt'))
+cuequivariance or cuequivariance_torch is not available. Cuequivariance acceleration will be disabled.
+
+[INFO] Initializing MACE MLIP calculator...
+Using model under Academic Software License (ASL) license, see https://github.com/gabor1/ASL 
+ To use this model you accept the terms of the license.
+Using Materials Project MACE for MACECalculator with /gpfs/home/acad/ucl-modl/rgouvea/.cache/mace/maceomat0mediummodel
+Using float64 for MACECalculator, which is slower but more accurate. Recommended for geometry optimization.
+/gpfs/scratch/acad/htforft/rgouvea/vibroml_runs/vibroml_env/lib/python3.9/site-packages/mace/calculators/mace.py:143: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  torch.load(f=model_path, map_location=device)
+Using head default out of ['default']
+
+--------------------------------------------------------------------------------
+[INFO] Computing MLIP Reference Energies for Formation Energy
+--------------------------------------------------------------------------------
+[INFO] Finding reference state for Fe...
+  [MACE] Relaxing reference Fe...
+/gpfs/scratch/acad/htforft/rgouvea/ProtoCSP_priv/protocsp/mlip_utils.py:208: FutureWarning: Please use atoms.calc = calc
+  atoms.set_calculator(calculator)
+/gpfs/scratch/acad/htforft/rgouvea/ProtoCSP_priv/protocsp/mlip_utils.py:216: FutureWarning: Import UnitCellFilter from ase.filters
+  ucf = UnitCellFilter(atoms)
+      [Step 0] E/atom: -8.275042 eV
+      [Step 1] E/atom: -8.277364 eV
+      [Step 2] E/atom: -8.296556 eV
+      [Step 3] E/atom: -8.299216 eV
+      [Step 4] E/atom: -8.301365 eV
+      [Step 5] E/atom: -8.303022 eV
+      [Step 6] E/atom: -8.303258 eV
+      [Step 7] E/atom: -8.303272 eV
+      [Step 8] E/atom: -8.303275 eV
+    [Relaxation] Converged beautifully (Max force: 0.0054 eV/Å)
+  [INFO] Reference energy (μ) for Fe: -8.3033 eV/atom
+[INFO] Finding reference state for Ni...
+  [MACE] Relaxing reference Ni...
+      [Step 0] E/atom: -5.487656 eV
+      [Step 1] E/atom: -5.487664 eV
+      [Step 2] E/atom: -5.487697 eV
+      [Step 3] E/atom: -5.487698 eV
+      [Step 4] E/atom: -5.487704 eV
+    [Relaxation] Converged beautifully (Max force: 0.0000 eV/Å)
+  [INFO] Reference energy (μ) for Ni: -5.4877 eV/atom
+[INFO] Finding reference state for Co...
+  [MACE] Relaxing reference Co...
+      [Step 0] E/atom: -6.989041 eV
+      [Step 1] E/atom: -6.989303 eV
+      [Step 2] E/atom: -6.990285 eV
+      [Step 3] E/atom: -6.990457 eV
+      [Step 4] E/atom: -6.991209 eV
+      [Step 5] E/atom: -6.991496 eV
+      [Step 6] E/atom: -6.991590 eV
+      [Step 7] E/atom: -6.991602 eV
+      [Step 8] E/atom: -6.991611 eV
+      [Step 9] E/atom: -6.991626 eV
+      [Step 10] E/atom: -6.991640 eV
+      [Step 11] E/atom: -6.991646 eV
+    [Relaxation] Converged beautifully (Max force: 0.0051 eV/Å)
+  [INFO] Reference energy (μ) for Co: -6.9916 eV/atom
+[INFO] Finding reference state for Mo...
+  [MACE] Relaxing reference Mo...
+      [Step 0] E/atom: -10.819852 eV
+      [Step 1] E/atom: -10.820487 eV
+      [Step 2] E/atom: -10.822486 eV
+    [Relaxation] Converged beautifully (Max force: 0.0000 eV/Å)
+  [INFO] Reference energy (μ) for Mo: -10.8225 eV/atom
+[INFO] Finding reference state for Pt...
+  [MACE] Relaxing reference Pt...
+      [Step 0] E/atom: -6.058974 eV
+      [Step 1] E/atom: -6.059189 eV
+      [Step 2] E/atom: -6.059692 eV
+      [Step 3] E/atom: -6.059762 eV
+      [Step 4] E/atom: -6.060057 eV
+      [Step 5] E/atom: -6.060125 eV
+      [Step 6] E/atom: -6.060139 eV
+    [Relaxation] Converged beautifully (Max force: 0.0000 eV/Å)
+  [INFO] Reference energy (μ) for Pt: -6.0601 eV/atom
+
+[INFO] Computing energies for 3 candidates (Relaxation: True)...
+  [MACE] Relaxes Candidate 1...
+      [Step 0] E/atom: -7.324226 eV
+      [Step 1] E/atom: -7.331491 eV
+      [Step 2] E/atom: -7.345903 eV
+      [Step 3] E/atom: -7.347209 eV
+      [Step 4] E/atom: -7.350148 eV
+      [Step 5] E/atom: -7.351247 eV
+      [Step 6] E/atom: -7.351937 eV
+      [Step 7] E/atom: -7.352351 eV
+      [Step 8] E/atom: -7.352730 eV
+      [Step 9] E/atom: -7.352994 eV
+      [Step 10] E/atom: -7.353257 eV
+      [Step 11] E/atom: -7.353563 eV
+      [Step 12] E/atom: -7.353937 eV
+      [Step 13] E/atom: -7.354322 eV
+      [Step 14] E/atom: -7.354688 eV
+      [Step 15] E/atom: -7.355071 eV
+      [Step 16] E/atom: -7.355544 eV
+      [Step 17] E/atom: -7.356030 eV
+      [Step 18] E/atom: -7.356468 eV
+      [Step 19] E/atom: -7.356965 eV
+      [Step 20] E/atom: -7.357670 eV
+      [Step 21] E/atom: -7.358653 eV
+      [Step 22] E/atom: -7.359803 eV
+      [Step 23] E/atom: -7.360937 eV
+      [Step 24] E/atom: -7.362067 eV
+      [Step 25] E/atom: -7.363241 eV
+      [Step 26] E/atom: -7.364511 eV
+      [Step 27] E/atom: -7.365914 eV
+      [Step 28] E/atom: -7.367493 eV
+      [Step 29] E/atom: -7.369280 eV
+      [Step 30] E/atom: -7.371287 eV
+      [Step 31] E/atom: -7.373529 eV
+      [Step 32] E/atom: -7.376015 eV
+      [Step 33] E/atom: -7.378734 eV
+      [Step 34] E/atom: -7.381809 eV
+      [Step 35] E/atom: -7.385502 eV
+      [Step 36] E/atom: -7.388830 eV
+      [Step 37] E/atom: -7.393029 eV
+      [Step 38] E/atom: -7.396496 eV
+      [Step 39] E/atom: -7.399965 eV
+      [Step 40] E/atom: -7.402004 eV
+      [Step 41] E/atom: -7.404570 eV
+      [Step 42] E/atom: -7.405981 eV
+      [Step 43] E/atom: -7.407449 eV
+      [Step 44] E/atom: -7.408190 eV
+      [Step 45] E/atom: -7.409010 eV
+      [Step 46] E/atom: -7.409392 eV
+      [Step 47] E/atom: -7.409715 eV
+      [Step 48] E/atom: -7.410017 eV
+      [Step 49] E/atom: -7.410306 eV
+      [Step 50] E/atom: -7.410518 eV
+      [Step 51] E/atom: -7.410718 eV
+      [Step 52] E/atom: -7.410939 eV
+      [Step 53] E/atom: -7.411167 eV
+      [Step 54] E/atom: -7.411367 eV
+      [Step 55] E/atom: -7.411542 eV
+      [Step 56] E/atom: -7.411731 eV
+      [Step 57] E/atom: -7.411960 eV
+      [Step 58] E/atom: -7.412189 eV
+      [Step 59] E/atom: -7.412388 eV
+      [Step 60] E/atom: -7.412611 eV
+      [Step 61] E/atom: -7.412950 eV
+      [Step 62] E/atom: -7.413438 eV
+      [Step 63] E/atom: -7.413963 eV
+      [Step 64] E/atom: -7.414536 eV
+      [Step 65] E/atom: -7.415003 eV
+      [Step 66] E/atom: -7.415510 eV
+      [Step 67] E/atom: -7.415981 eV
+      [Step 68] E/atom: -7.416283 eV
+      [Step 69] E/atom: -7.416458 eV
+      [Step 70] E/atom: -7.416593 eV
+      [Step 71] E/atom: -7.416779 eV
+      [Step 72] E/atom: -7.416894 eV
+      [Step 73] E/atom: -7.416982 eV
+      [Step 74] E/atom: -7.417047 eV
+      [Step 75] E/atom: -7.417134 eV
+      [Step 76] E/atom: -7.417223 eV
+      [Step 77] E/atom: -7.417298 eV
+      [Step 78] E/atom: -7.417356 eV
+      [Step 79] E/atom: -7.417412 eV
+      [Step 80] E/atom: -7.417471 eV
+      [Step 81] E/atom: -7.417526 eV
+      [Step 82] E/atom: -7.417575 eV
+      [Step 83] E/atom: -7.417626 eV
+      [Step 84] E/atom: -7.417682 eV
+      [Step 85] E/atom: -7.417730 eV
+      [Step 86] E/atom: -7.417766 eV
+      [Step 87] E/atom: -7.417800 eV
+      [Step 88] E/atom: -7.417844 eV
+      [Step 89] E/atom: -7.417897 eV
+      [Step 90] E/atom: -7.417942 eV
+      [Step 91] E/atom: -7.417972 eV
+      [Step 92] E/atom: -7.418000 eV
+      [Step 93] E/atom: -7.418035 eV
+      [Step 94] E/atom: -7.418072 eV
+      [Step 95] E/atom: -7.418100 eV
+      [Step 96] E/atom: -7.418118 eV
+      [Step 97] E/atom: -7.418132 eV
+      [Step 98] E/atom: -7.418147 eV
+      [Step 99] E/atom: -7.418160 eV
+      [Step 100] E/atom: -7.418169 eV
+      [Step 101] E/atom: -7.418177 eV
+      [Step 102] E/atom: -7.418187 eV
+      [Step 103] E/atom: -7.418199 eV
+      [Step 104] E/atom: -7.418212 eV
+      [Step 105] E/atom: -7.418225 eV
+      [Step 106] E/atom: -7.418242 eV
+      [Step 107] E/atom: -7.418263 eV
+      [Step 108] E/atom: -7.418286 eV
+      [Step 109] E/atom: -7.418309 eV
+      [Step 110] E/atom: -7.418333 eV
+      [Step 111] E/atom: -7.418362 eV
+      [Step 112] E/atom: -7.418395 eV
+      [Step 113] E/atom: -7.418424 eV
+      [Step 114] E/atom: -7.418451 eV
+      [Step 115] E/atom: -7.418483 eV
+      [Step 116] E/atom: -7.418525 eV
+      [Step 117] E/atom: -7.418567 eV
+      [Step 118] E/atom: -7.418600 eV
+      [Step 119] E/atom: -7.418628 eV
+      [Step 120] E/atom: -7.418664 eV
+      [Step 121] E/atom: -7.418722 eV
+      [Step 122] E/atom: -7.418803 eV
+      [Step 123] E/atom: -7.418887 eV
+      [Step 124] E/atom: -7.418978 eV
+      [Step 125] E/atom: -7.419098 eV
+      [Step 126] E/atom: -7.419266 eV
+      [Step 127] E/atom: -7.419452 eV
+      [Step 128] E/atom: -7.419660 eV
+      [Step 129] E/atom: -7.419904 eV
+      [Step 130] E/atom: -7.420318 eV
+      [Step 131] E/atom: -7.420785 eV
+      [Step 132] E/atom: -7.421412 eV
+      [Step 133] E/atom: -7.422195 eV
+      [Step 134] E/atom: -7.423116 eV
+      [Step 135] E/atom: -7.423935 eV
+      [Step 136] E/atom: -7.424637 eV
+      [Step 137] E/atom: -7.425880 eV
+      [Step 138] E/atom: -7.427065 eV
+      [Step 139] E/atom: -7.428073 eV
+      [Step 140] E/atom: -7.428832 eV
+      [Step 141] E/atom: -7.429666 eV
+      [Step 142] E/atom: -7.430890 eV
+      [Step 143] E/atom: -7.431987 eV
+      [Step 144] E/atom: -7.432754 eV
+      [Step 145] E/atom: -7.433350 eV
+      [Step 146] E/atom: -7.433954 eV
+      [Step 147] E/atom: -7.434948 eV
+      [Step 148] E/atom: -7.435704 eV
+      [Step 149] E/atom: -7.436157 eV
+      [Step 150] E/atom: -7.436598 eV
+      [Step 151] E/atom: -7.437408 eV
+      [Step 152] E/atom: -7.438291 eV
+      [Step 153] E/atom: -7.438923 eV
+      [Step 154] E/atom: -7.439468 eV
+      [Step 155] E/atom: -7.440263 eV
+      [Step 156] E/atom: -7.441503 eV
+      [Step 157] E/atom: -7.443048 eV
+      [Step 158] E/atom: -7.444223 eV
+      [Step 159] E/atom: -7.445281 eV
+      [Step 160] E/atom: -7.446198 eV
+      [Step 161] E/atom: -7.447656 eV
+      [Step 162] E/atom: -7.449006 eV
+      [Step 163] E/atom: -7.449978 eV
+      [Step 164] E/atom: -7.450690 eV
+      [Step 165] E/atom: -7.451576 eV
+      [Step 166] E/atom: -7.452840 eV
+      [Step 167] E/atom: -7.453602 eV
+      [Step 168] E/atom: -7.454085 eV
+      [Step 169] E/atom: -7.454597 eV
+      [Step 170] E/atom: -7.455267 eV
+      [Step 171] E/atom: -7.455881 eV
+      [Step 172] E/atom: -7.456166 eV
+      [Step 173] E/atom: -7.456351 eV
+      [Step 174] E/atom: -7.456569 eV
+      [Step 175] E/atom: -7.456821 eV
+      [Step 176] E/atom: -7.457009 eV
+      [Step 177] E/atom: -7.457135 eV
+      [Step 178] E/atom: -7.457238 eV
+      [Step 179] E/atom: -7.457363 eV
+      [Step 180] E/atom: -7.457468 eV
+      [Step 181] E/atom: -7.457523 eV
+      [Step 182] E/atom: -7.457558 eV
+      [Step 183] E/atom: -7.457599 eV
+      [Step 184] E/atom: -7.457653 eV
+      [Step 185] E/atom: -7.457703 eV
+      [Step 186] E/atom: -7.457735 eV
+      [Step 187] E/atom: -7.457758 eV
+      [Step 188] E/atom: -7.457785 eV
+      [Step 189] E/atom: -7.457816 eV
+      [Step 190] E/atom: -7.457841 eV
+      [Step 191] E/atom: -7.457858 eV
+      [Step 192] E/atom: -7.457873 eV
+      [Step 193] E/atom: -7.457893 eV
+      [Step 194] E/atom: -7.457915 eV
+      [Step 195] E/atom: -7.457934 eV
+      [Step 196] E/atom: -7.457952 eV
+      [Step 197] E/atom: -7.457977 eV
+      [Step 198] E/atom: -7.458016 eV
+      [Step 199] E/atom: -7.458066 eV
+      [Step 200] E/atom: -7.458114 eV
+      [Step 201] E/atom: -7.458159 eV
+      [Step 202] E/atom: -7.458206 eV
+      [Step 203] E/atom: -7.458265 eV
+      [Step 204] E/atom: -7.458326 eV
+      [Step 205] E/atom: -7.458366 eV
+      [Step 206] E/atom: -7.458392 eV
+      [Step 207] E/atom: -7.458416 eV
+      [Step 208] E/atom: -7.458445 eV
+      [Step 209] E/atom: -7.458469 eV
+      [Step 210] E/atom: -7.458483 eV
+      [Step 211] E/atom: -7.458491 eV
+      [Step 212] E/atom: -7.458501 eV
+      [Step 213] E/atom: -7.458514 eV
+      [Step 214] E/atom: -7.458525 eV
+      [Step 215] E/atom: -7.458531 eV
+      [Step 216] E/atom: -7.458536 eV
+      [Step 217] E/atom: -7.458542 eV
+      [Step 218] E/atom: -7.458547 eV
+      [Step 219] E/atom: -7.458550 eV
+      [Step 220] E/atom: -7.458552 eV
+      [Step 221] E/atom: -7.458554 eV
+      [Step 222] E/atom: -7.458556 eV
+    [Relaxation] Converged beautifully (Max force: 0.0130 eV/Å)
+  [MACE] Candidate 1 E_form: 0.2171 eV/atom (E_tot: -7.4586)
+  [MACE] Relaxes Candidate 2...
+      [Step 0] E/atom: -7.320577 eV
+      [Step 1] E/atom: -7.327750 eV
+      [Step 2] E/atom: -7.340074 eV
+      [Step 3] E/atom: -7.341320 eV
+      [Step 4] E/atom: -7.343477 eV
+      [Step 5] E/atom: -7.344397 eV
+      [Step 6] E/atom: -7.344993 eV
+      [Step 7] E/atom: -7.345481 eV
+      [Step 8] E/atom: -7.346221 eV
+      [Step 9] E/atom: -7.346947 eV
+      [Step 10] E/atom: -7.347654 eV
+      [Step 11] E/atom: -7.348387 eV
+      [Step 12] E/atom: -7.349192 eV
+      [Step 13] E/atom: -7.349981 eV
+      [Step 14] E/atom: -7.350631 eV
+      [Step 15] E/atom: -7.351156 eV
+      [Step 16] E/atom: -7.351782 eV
+      [Step 17] E/atom: -7.352611 eV
+      [Step 18] E/atom: -7.353393 eV
+      [Step 19] E/atom: -7.353962 eV
+      [Step 20] E/atom: -7.354414 eV
+      [Step 21] E/atom: -7.354940 eV
+      [Step 22] E/atom: -7.355665 eV
+      [Step 23] E/atom: -7.356504 eV
+      [Step 24] E/atom: -7.357328 eV
+      [Step 25] E/atom: -7.358191 eV
+      [Step 26] E/atom: -7.359321 eV
+      [Step 27] E/atom: -7.360739 eV
+      [Step 28] E/atom: -7.362195 eV
+      [Step 29] E/atom: -7.363658 eV
+      [Step 30] E/atom: -7.365164 eV
+      [Step 31] E/atom: -7.366788 eV
+      [Step 32] E/atom: -7.368543 eV
+      [Step 33] E/atom: -7.370388 eV
+      [Step 34] E/atom: -7.372354 eV
+      [Step 35] E/atom: -7.374445 eV
+      [Step 36] E/atom: -7.376762 eV
+      [Step 37] E/atom: -7.379281 eV
+      [Step 38] E/atom: -7.382151 eV
+      [Step 39] E/atom: -7.385276 eV
+      [Step 40] E/atom: -7.388830 eV
+      [Step 41] E/atom: -7.391921 eV
+      [Step 42] E/atom: -7.395041 eV
+      [Step 43] E/atom: -7.397233 eV
+      [Step 44] E/atom: -7.399124 eV
+      [Step 45] E/atom: -7.401284 eV
+      [Step 46] E/atom: -7.403192 eV
+      [Step 47] E/atom: -7.404881 eV
+      [Step 48] E/atom: -7.406056 eV
+      [Step 49] E/atom: -7.406827 eV
+      [Step 50] E/atom: -7.407778 eV
+      [Step 51] E/atom: -7.408710 eV
+      [Step 52] E/atom: -7.409565 eV
+      [Step 53] E/atom: -7.410278 eV
+      [Step 54] E/atom: -7.411028 eV
+      [Step 55] E/atom: -7.411881 eV
+      [Step 56] E/atom: -7.412716 eV
+      [Step 57] E/atom: -7.413314 eV
+      [Step 58] E/atom: -7.413688 eV
+      [Step 59] E/atom: -7.414019 eV
+      [Step 60] E/atom: -7.414395 eV
+      [Step 61] E/atom: -7.414717 eV
+      [Step 62] E/atom: -7.414909 eV
+      [Step 63] E/atom: -7.415018 eV
+      [Step 64] E/atom: -7.415112 eV
+      [Step 65] E/atom: -7.415205 eV
+      [Step 66] E/atom: -7.415280 eV
+      [Step 67] E/atom: -7.415345 eV
+      [Step 68] E/atom: -7.415412 eV
+      [Step 69] E/atom: -7.415479 eV
+      [Step 70] E/atom: -7.415536 eV
+      [Step 71] E/atom: -7.415584 eV
+      [Step 72] E/atom: -7.415635 eV
+      [Step 73] E/atom: -7.415686 eV
+      [Step 74] E/atom: -7.415724 eV
+      [Step 75] E/atom: -7.415746 eV
+      [Step 76] E/atom: -7.415763 eV
+      [Step 77] E/atom: -7.415781 eV
+      [Step 78] E/atom: -7.415796 eV
+      [Step 79] E/atom: -7.415806 eV
+      [Step 80] E/atom: -7.415814 eV
+      [Step 81] E/atom: -7.415823 eV
+      [Step 82] E/atom: -7.415834 eV
+      [Step 83] E/atom: -7.415844 eV
+      [Step 84] E/atom: -7.415853 eV
+      [Step 85] E/atom: -7.415864 eV
+      [Step 86] E/atom: -7.415878 eV
+      [Step 87] E/atom: -7.415894 eV
+      [Step 88] E/atom: -7.415906 eV
+      [Step 89] E/atom: -7.415913 eV
+      [Step 90] E/atom: -7.415919 eV
+      [Step 91] E/atom: -7.415927 eV
+      [Step 92] E/atom: -7.415933 eV
+      [Step 93] E/atom: -7.415936 eV
+      [Step 94] E/atom: -7.415938 eV
+      [Step 95] E/atom: -7.415941 eV
+      [Step 96] E/atom: -7.415943 eV
+      [Step 97] E/atom: -7.415944 eV
+      [Step 98] E/atom: -7.415945 eV
+    [Relaxation] Converged beautifully (Max force: 0.0092 eV/Å)
+  [MACE] Candidate 2 E_form: 0.2597 eV/atom (E_tot: -7.4159)
+  [MACE] Relaxes Candidate 3...
+      [Step 0] E/atom: -7.329143 eV
+      [Step 1] E/atom: -7.336597 eV
+      [Step 2] E/atom: -7.350234 eV
+      [Step 3] E/atom: -7.351450 eV
+      [Step 4] E/atom: -7.353386 eV
+      [Step 5] E/atom: -7.354182 eV
+      [Step 6] E/atom: -7.354652 eV
+      [Step 7] E/atom: -7.355006 eV
+      [Step 8] E/atom: -7.355530 eV
+      [Step 9] E/atom: -7.356011 eV
+      [Step 10] E/atom: -7.356469 eV
+      [Step 11] E/atom: -7.356909 eV
+      [Step 12] E/atom: -7.357365 eV
+      [Step 13] E/atom: -7.357797 eV
+      [Step 14] E/atom: -7.358168 eV
+      [Step 15] E/atom: -7.358522 eV
+      [Step 16] E/atom: -7.358957 eV
+      [Step 17] E/atom: -7.359484 eV
+      [Step 18] E/atom: -7.360053 eV
+      [Step 19] E/atom: -7.360688 eV
+      [Step 20] E/atom: -7.361490 eV
+      [Step 21] E/atom: -7.362593 eV
+      [Step 22] E/atom: -7.363933 eV
+      [Step 23] E/atom: -7.365275 eV
+      [Step 24] E/atom: -7.366625 eV
+      [Step 25] E/atom: -7.368021 eV
+      [Step 26] E/atom: -7.369577 eV
+      [Step 27] E/atom: -7.371429 eV
+      [Step 28] E/atom: -7.373601 eV
+      [Step 29] E/atom: -7.376108 eV
+      [Step 30] E/atom: -7.378957 eV
+      [Step 31] E/atom: -7.381958 eV
+      [Step 32] E/atom: -7.385400 eV
+      [Step 33] E/atom: -7.388520 eV
+      [Step 34] E/atom: -7.393943 eV
+      [Step 35] E/atom: -7.395923 eV
+      [Step 36] E/atom: -7.401926 eV
+      [Step 37] E/atom: -7.404963 eV
+      [Step 38] E/atom: -7.407525 eV
+      [Step 39] E/atom: -7.409512 eV
+      [Step 40] E/atom: -7.411469 eV
+      [Step 41] E/atom: -7.412828 eV
+      [Step 42] E/atom: -7.413598 eV
+      [Step 43] E/atom: -7.414162 eV
+      [Step 44] E/atom: -7.414534 eV
+      [Step 45] E/atom: -7.414794 eV
+      [Step 46] E/atom: -7.414937 eV
+      [Step 47] E/atom: -7.415045 eV
+      [Step 48] E/atom: -7.415170 eV
+      [Step 49] E/atom: -7.415311 eV
+      [Step 50] E/atom: -7.415452 eV
+      [Step 51] E/atom: -7.415586 eV
+      [Step 52] E/atom: -7.415738 eV
+      [Step 53] E/atom: -7.415948 eV
+      [Step 54] E/atom: -7.416218 eV
+      [Step 55] E/atom: -7.416502 eV
+      [Step 56] E/atom: -7.416788 eV
+      [Step 57] E/atom: -7.417105 eV
+      [Step 58] E/atom: -7.417484 eV
+      [Step 59] E/atom: -7.417882 eV
+      [Step 60] E/atom: -7.418214 eV
+      [Step 61] E/atom: -7.418482 eV
+      [Step 62] E/atom: -7.418738 eV
+      [Step 63] E/atom: -7.419023 eV
+      [Step 64] E/atom: -7.419259 eV
+      [Step 65] E/atom: -7.419417 eV
+      [Step 66] E/atom: -7.419544 eV
+      [Step 67] E/atom: -7.419682 eV
+      [Step 68] E/atom: -7.419812 eV
+      [Step 69] E/atom: -7.419888 eV
+      [Step 70] E/atom: -7.419928 eV
+      [Step 71] E/atom: -7.419974 eV
+      [Step 72] E/atom: -7.420051 eV
+      [Step 73] E/atom: -7.420111 eV
+      [Step 74] E/atom: -7.420166 eV
+      [Step 75] E/atom: -7.420199 eV
+      [Step 76] E/atom: -7.420233 eV
+      [Step 77] E/atom: -7.420268 eV
+      [Step 78] E/atom: -7.420300 eV
+      [Step 79] E/atom: -7.420325 eV
+      [Step 80] E/atom: -7.420351 eV
+      [Step 81] E/atom: -7.420380 eV
+      [Step 82] E/atom: -7.420406 eV
+      [Step 83] E/atom: -7.420425 eV
+      [Step 84] E/atom: -7.420443 eV
+      [Step 85] E/atom: -7.420465 eV
+      [Step 86] E/atom: -7.420489 eV
+      [Step 87] E/atom: -7.420512 eV
+      [Step 88] E/atom: -7.420534 eV
+      [Step 89] E/atom: -7.420560 eV
+      [Step 90] E/atom: -7.420594 eV
+      [Step 91] E/atom: -7.420630 eV
+      [Step 92] E/atom: -7.420661 eV
+      [Step 93] E/atom: -7.420687 eV
+      [Step 94] E/atom: -7.420717 eV
+      [Step 95] E/atom: -7.420750 eV
+      [Step 96] E/atom: -7.420777 eV
+      [Step 97] E/atom: -7.420795 eV
+      [Step 98] E/atom: -7.420810 eV
+      [Step 99] E/atom: -7.420828 eV
+      [Step 100] E/atom: -7.420848 eV
+      [Step 101] E/atom: -7.420864 eV
+      [Step 102] E/atom: -7.420879 eV
+      [Step 103] E/atom: -7.420899 eV
+      [Step 104] E/atom: -7.420927 eV
+      [Step 105] E/atom: -7.420957 eV
+      [Step 106] E/atom: -7.420985 eV
+      [Step 107] E/atom: -7.421013 eV
+      [Step 108] E/atom: -7.421049 eV
+      [Step 109] E/atom: -7.421094 eV
+      [Step 110] E/atom: -7.421136 eV
+      [Step 111] E/atom: -7.421172 eV
+      [Step 112] E/atom: -7.421206 eV
+      [Step 113] E/atom: -7.421264 eV
+      [Step 114] E/atom: -7.421347 eV
+      [Step 115] E/atom: -7.421451 eV
+      [Step 116] E/atom: -7.421557 eV
+      [Step 117] E/atom: -7.421679 eV
+      [Step 118] E/atom: -7.421826 eV
+      [Step 119] E/atom: -7.422052 eV
+      [Step 120] E/atom: -7.422398 eV
+      [Step 121] E/atom: -7.422753 eV
+      [Step 122] E/atom: -7.423192 eV
+      [Step 123] E/atom: -7.423985 eV
+      [Step 124] E/atom: -7.424809 eV
+      [Step 125] E/atom: -7.426552 eV
+      [Step 126] E/atom: -7.427610 eV
+      [Step 127] E/atom: -7.429837 eV
+      [Step 128] E/atom: -7.431285 eV
+      [Step 129] E/atom: -7.433730 eV
+      [Step 130] E/atom: -7.435276 eV
+      [Step 131] E/atom: -7.436899 eV
+      [Step 132] E/atom: -7.439108 eV
+      [Step 133] E/atom: -7.441407 eV
+      [Step 134] E/atom: -7.443766 eV
+      [Step 135] E/atom: -7.445315 eV
+      [Step 136] E/atom: -7.447045 eV
+      [Step 137] E/atom: -7.447939 eV
+      [Step 138] E/atom: -7.449868 eV
+      [Step 139] E/atom: -7.451535 eV
+      [Step 140] E/atom: -7.454279 eV
+      [Step 141] E/atom: -7.455703 eV
+      [Step 142] E/atom: -7.457472 eV
+      [Step 143] E/atom: -7.459360 eV
+      [Step 144] E/atom: -7.461228 eV
+      [Step 145] E/atom: -7.462329 eV
+      [Step 146] E/atom: -7.462897 eV
+      [Step 147] E/atom: -7.463309 eV
+      [Step 148] E/atom: -7.463857 eV
+      [Step 149] E/atom: -7.464580 eV
+      [Step 150] E/atom: -7.464999 eV
+      [Step 151] E/atom: -7.465223 eV
+      [Step 152] E/atom: -7.465377 eV
+      [Step 153] E/atom: -7.465552 eV
+      [Step 154] E/atom: -7.465693 eV
+      [Step 155] E/atom: -7.465771 eV
+      [Step 156] E/atom: -7.465825 eV
+      [Step 157] E/atom: -7.465874 eV
+      [Step 158] E/atom: -7.465920 eV
+      [Step 159] E/atom: -7.465960 eV
+      [Step 160] E/atom: -7.465988 eV
+      [Step 161] E/atom: -7.466006 eV
+      [Step 162] E/atom: -7.466021 eV
+      [Step 163] E/atom: -7.466034 eV
+      [Step 164] E/atom: -7.466044 eV
+      [Step 165] E/atom: -7.466051 eV
+      [Step 166] E/atom: -7.466055 eV
+      [Step 167] E/atom: -7.466059 eV
+      [Step 168] E/atom: -7.466063 eV
+      [Step 169] E/atom: -7.466066 eV
+      [Step 170] E/atom: -7.466068 eV
+      [Step 171] E/atom: -7.466070 eV
+      [Step 172] E/atom: -7.466072 eV
+      [Step 173] E/atom: -7.466075 eV
+      [Step 174] E/atom: -7.466078 eV
+      [Step 175] E/atom: -7.466080 eV
+      [Step 176] E/atom: -7.466084 eV
+      [Step 177] E/atom: -7.466088 eV
+      [Step 178] E/atom: -7.466096 eV
+      [Step 179] E/atom: -7.466113 eV
+      [Step 180] E/atom: -7.466180 eV
+      [Step 181] E/atom: -7.466228 eV
+      [Step 182] E/atom: -7.466369 eV
+      [Step 183] E/atom: -7.465817 eV
+      [Step 184] E/atom: -7.466671 eV
+      [Step 185] E/atom: -7.466831 eV
+      [Step 186] E/atom: -7.466935 eV
+      [Step 187] E/atom: -7.467392 eV
+      [Step 188] E/atom: -7.467506 eV
+      [Step 189] E/atom: -7.467744 eV
+      [Step 190] E/atom: -7.467834 eV
+      [Step 191] E/atom: -7.467991 eV
+      [Step 192] E/atom: -7.468051 eV
+      [Step 193] E/atom: -7.468111 eV
+      [Step 194] E/atom: -7.468156 eV
+      [Step 195] E/atom: -7.468217 eV
+      [Step 196] E/atom: -7.468269 eV
+      [Step 197] E/atom: -7.468304 eV
+      [Step 198] E/atom: -7.468323 eV
+      [Step 199] E/atom: -7.468339 eV
+      [Step 200] E/atom: -7.468356 eV
+      [Step 201] E/atom: -7.468369 eV
+      [Step 202] E/atom: -7.468376 eV
+      [Step 203] E/atom: -7.468381 eV
+      [Step 204] E/atom: -7.468388 eV
+      [Step 205] E/atom: -7.468395 eV
+      [Step 206] E/atom: -7.468401 eV
+      [Step 207] E/atom: -7.468403 eV
+      [Step 208] E/atom: -7.468406 eV
+      [Step 209] E/atom: -7.468409 eV
+      [Step 210] E/atom: -7.468412 eV
+      [Step 211] E/atom: -7.468415 eV
+      [Step 212] E/atom: -7.468416 eV
+      [Step 213] E/atom: -7.468417 eV
+      [Step 214] E/atom: -7.468419 eV
+      [Step 215] E/atom: -7.468421 eV
+      [Step 216] E/atom: -7.468422 eV
+      [Step 217] E/atom: -7.468423 eV
+      [Step 218] E/atom: -7.468425 eV
+      [Step 219] E/atom: -7.468427 eV
+    [Relaxation] Converged beautifully (Max force: 0.0117 eV/Å)
+  [MACE] Candidate 3 E_form: 0.2072 eV/atom (E_tot: -7.4684)
+
+Saving 3 structures to /gpfs/scratch/acad/htforft/rgouvea/ProtoCSP_priv/test/test_surface_outputs/ (Suffix: '_relaxed')
+/gpfs/scratch/acad/htforft/rgouvea/vibroml_runs/vibroml_env/lib/python3.9/site-packages/pymatgen/io/cif.py:1721: FutureWarning: We strongly discourage using implicit binary/text `mode`, and this would not be allowed after 2025-06-01. I.e. you should pass t/b in `mode`.
+  with zopen(filename, mode=mode) as file:
+  [1] Saved: Fe0.6Ni0.15Co0.15Mo0.05Pt0.05_manual_base_doping_doped_from_provided_fe_bcc_001_surface_sqs_3_rank_1_relaxed.cif
+  [2] Saved: Fe0.6Ni0.15Co0.15Mo0.05Pt0.05_manual_base_doping_doped_from_provided_fe_bcc_001_surface_sqs_1_rank_2_relaxed.cif
+  [3] Saved: Fe0.6Ni0.15Co0.15Mo0.05Pt0.05_manual_base_doping_doped_from_provided_fe_bcc_001_surface_sqs_2_rank_3_relaxed.cif
+[INFO] MLIP Evaluation finished in 25.08s
+
+Generated Structures (Ranked):
+[1] Formula: Fe18Co5Ni5(MoPt)2
+    Source ID: doped_from_provided_fe_bcc_001_surface_sqs_3
+    Initial Space Group (Parent): P4/nmm
+    Formation Energy: 0.2072 eV/atom
+    Total Energy: -7.4684 eV/atom
+    Space Group: P1
+    Volume: 728.075 Å³
+
+[2] Formula: Fe18Co5Ni5(MoPt)2
+    Source ID: doped_from_provided_fe_bcc_001_surface_sqs_1
+    Initial Space Group (Parent): P4/nmm
+    Formation Energy: 0.2171 eV/atom
+    Total Energy: -7.4586 eV/atom
+    Space Group: P1
+    Volume: 719.278 Å³
+
+[3] Formula: Fe18Co5Ni5(MoPt)2
+    Source ID: doped_from_provided_fe_bcc_001_surface_sqs_2
+    Initial Space Group (Parent): P4/nmm
+    Formation Energy: 0.2597 eV/atom
+    Total Energy: -7.4159 eV/atom
+    Space Group: P1
+    Volume: 767.144 Å³
+
+[INFO] MLIP evaluation summary saved to /gpfs/scratch/acad/htforft/rgouvea/ProtoCSP_priv/test/test_surface_outputs/Fe0.6Ni0.15Co0.15Mo0.05Pt0.05_mlip_energies.json
+
+[SUCCESS] 3 candidates evaluated with MLIP (69.93s)
+--------------------------------------------------------------------------------
+
+done
+Thu Apr  2 13:09:52 CEST 2026
+
+Resources Used
+
+Total Memory used                        - MEM              : 4.5GiB
+Total CPU Time                           - CPU_Time         : 00:09:36
+Execution Time                           - Wall_Time        : 00:01:12
+total programme cpu time                 - Total_CPU        : 07:33.130
+Total_CPU / CPU_Time  (%)                - ETA              : 78%
+Number of alloc CPU                      - NCPUS            : 8
+Number of Mobilized Resources per Job    - NCPUS_EQUIV_PJOB : 32
+Mobilized Resources x Execution Time     - R_Wall_Time      : 00:38:24
+CPU_Time / R_Wall_Time (%)               - ALPHA            : 25%
+Energy (Joules)                                             : unknown
+

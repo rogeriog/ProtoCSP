@@ -5,5 +5,6 @@ __pycache__
 
 ## LeMat indexed database
 lemat_formula_indexed/
+lemat_parquet_files/
 
 generated_structures/

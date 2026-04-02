@@ -2,28 +2,28 @@
     {
         "rank": 1,
         "formula": "Fe18Co5Ni5(MoPt)2",
-        "source_id": "doped_from_provided_fe_bcc_001_surface_sqs_3",
-        "parent_formula": "Fe",
-        "method": "Manual Base Doping (Target Size: ~20)",
-        "space_group": "P1",
-        "num_sites": 32,
-        "volume_A3": 728.075,
-        "formation_energy_per_atom_eV": 0.20722784884846845,
-        "total_energy_per_atom_eV": -7.46842683280599,
-        "total_energy_eV": -238.9896586497917
-    },
-    {
-        "rank": 2,
-        "formula": "Fe18Co5Ni5(MoPt)2",
         "source_id": "doped_from_provided_fe_bcc_001_surface_sqs_1",
         "parent_formula": "Fe",
         "method": "Manual Base Doping (Target Size: ~20)",
         "space_group": "P1",
         "num_sites": 32,
-        "volume_A3": 719.278,
-        "formation_energy_per_atom_eV": 0.2170987296684892,
-        "total_energy_per_atom_eV": -7.45855595198597,
-        "total_energy_eV": -238.67379046355103
+        "volume_A3": 716.974,
+        "formation_energy_per_atom_eV": 0.21035289064215323,
+        "total_energy_per_atom_eV": -7.465301791010743,
+        "total_energy_eV": -238.8896573123438
+    },
+    {
+        "rank": 2,
+        "formula": "Fe18Co5Ni5(MoPt)2",
+        "source_id": "doped_from_provided_fe_bcc_001_surface_sqs_3",
+        "parent_formula": "Fe",
+        "method": "Manual Base Doping (Target Size: ~20)",
+        "space_group": "P1",
+        "num_sites": 32,
+        "volume_A3": 716.858,
+        "formation_energy_per_atom_eV": 0.210972455198144,
+        "total_energy_per_atom_eV": -7.464682226454753,
+        "total_energy_eV": -238.8698312465521
     },
     {
         "rank": 3,
@@ -33,9 +33,9 @@
         "method": "Manual Base Doping (Target Size: ~20)",
         "space_group": "P1",
         "num_sites": 32,
-        "volume_A3": 767.144,
-        "formation_energy_per_atom_eV": 0.2597092031243724,
-        "total_energy_per_atom_eV": -7.4159454785300865,
-        "total_energy_eV": -237.31025531296277
+        "volume_A3": 723.326,
+        "formation_energy_per_atom_eV": 0.21913001708830926,
+        "total_energy_per_atom_eV": -7.456524664564587,
+        "total_energy_eV": -238.6087892660668
     }
 ]

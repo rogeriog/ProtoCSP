@@ -70,7 +70,7 @@ def main():
             "--top-k", "3",
             "--save-cif",
             "--sqs", 
-            "--sqs-iterations", "500000",
+            "--sqs-iterations", "5000000",
             "--mlip", 
             "--engine", "mace"
         ]
