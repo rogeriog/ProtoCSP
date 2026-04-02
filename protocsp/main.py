@@ -35,7 +35,7 @@ except ImportError:
 from core import ProtoCSP, build_library_index
 
 
-def save_structures_as_cif(candidates: List[dict], composition: str, output_dir: str):
+def save_structures_as_cif(candidates: List[dict], composition: str, output_dir: str, suffix: str = ""):
     """
     Saves generated structures as CIF files with meaningful filenames.
 
@@ -43,15 +43,15 @@ def save_structures_as_cif(candidates: List[dict], composition: str, output_dir:
         candidates: List of candidate dictionaries with 'structure', 'id', 'method', etc.
         composition: Chemical formula
         output_dir: Output directory
+        suffix: Optional string to append to filename (e.g., '_unrelaxed', '_relaxed')
     """
     os.makedirs(output_dir, exist_ok=True)
-    print(f"\nSaving {len(candidates)} structures to {output_dir}/")
+    print(f"\nSaving {len(candidates)} structures to {output_dir}/ (Suffix: '{suffix}')")
 
     for i, entry in enumerate(candidates):
         try:
             struct = entry['structure']
 
-            # Create meaningful filename
             # Clean composition string (remove spaces, special chars)
             clean_comp = composition.replace(' ', '').replace('(', '').replace(')', '')
 
@@ -61,12 +61,10 @@ def save_structures_as_cif(candidates: List[dict], composition: str, output_dir:
 
             # Simplify method name for filename
             method_short = method.split('(')[0].strip().replace(' ', '_').lower()
-
-            # Clean source ID (remove special characters)
             clean_source = source_id.replace('/', '_').replace(':', '_')
 
-            # Build filename: composition_method_source_candidateN.cif
-            filename = f"{clean_comp}_{method_short}_{clean_source}_rank_{i+1}.cif"
+            # Build filename: composition_method_source_rank_N_suffix.cif
+            filename = f"{clean_comp}_{method_short}_{clean_source}_rank_{i+1}{suffix}.cif"
             filepath = os.path.join(output_dir, filename)
 
             struct.to(filename=filepath, fmt="cif")
@@ -89,7 +87,6 @@ def compute_reference_energies(comp_str: str, generator: ProtoCSP, calc, engine:
     adapter = AseAtomsAdaptor()
     mu_dict = {}
     
-    # Pure elements have the anonymized formula "A"
     entries = generator._get_entries("A")
     
     print("\n" + "-"*80)
@@ -98,7 +95,6 @@ def compute_reference_energies(comp_str: str, generator: ProtoCSP, calc, engine:
 
     for el in elements:
         print(f"[INFO] Finding reference state for {el}...")
-        # Find all entries for this specific pure element
         el_entries = [e for e in entries if e.get('reduced_formula') == el]
         
         if not el_entries:
@@ -115,7 +111,6 @@ def compute_reference_energies(comp_str: str, generator: ProtoCSP, calc, engine:
 
         el_entries.sort(key=lambda x: x.get('energy_per_atom'))
         
-        # Take the best one and hydrate it to a pymatgen structure
         best_entry = generator._hydrate_entry(el_entries[0])
         if not best_entry:
             print(f"  [WARNING] Could not hydrate reference for {el}. Using 0.0 eV/atom.")
@@ -177,7 +172,7 @@ def evaluate_candidates_with_mlip(candidates: List[dict], calc, engine: str, do_
                     continue
                 
                 atoms = relaxed_atoms
-                atoms.calc = calc # Ensure calculator is preserved
+                atoms.calc = calc
                 entry['structure'] = adapter.get_structure(atoms)
             # -----------------------
 
@@ -213,7 +208,7 @@ def main():
     parser.add_argument('--limit', type=int, default=None)
     parser.add_argument('--top-k', type=int, default=5)
     parser.add_argument('--max-bases', type=int, default=3, help='Maximum number of different parent structures to use')
-    parser.add_argument('--base-cif', type=str, default=None, help='Path to a manual CIF file to use as the structural base (bypasses DB search).')
+    parser.add_argument('--base-cif', type=str, default=None, help='Path to a manual CIF file to use as the structural base.')
 
     parser.add_argument('--min-atoms', type=int, default=20, help='Minimum atoms in supercell to ensure stoichiometric accuracy')
     parser.add_argument('--randomize-scaling', action='store_true', help='Slightly randomize supercell dimensions for more diversity')
@@ -235,7 +230,6 @@ def main():
     parser.add_argument('--engine', type=str, default='mace', choices=['mace', 'esen', 'uma', 'm3gnet', 'gpumd', 'nep', 'calorine'], help='MLIP engine to use (default: mace)')
     parser.add_argument('--model-name', type=str, default='medium-omat-0', help='Model name for MACE (default: medium-omat-0)')
     parser.add_argument('--checkpoint-model', type=str, default=None, help='Path to checkpoint file (Required for eSEN/UMA/NEP)')
-    # --------------------------
     args = parser.parse_args()
 
     print("=" * 80)
@@ -292,7 +286,12 @@ def main():
     print(f"GENERATION COMPLETE ({len(candidates)} candidates in {generation_time:.2f}s)")
     print()
 
-# --- NEW: RUN MLIP EVALUATION ---
+    # --- SAVE UNRELAXED CIFs BEFORE MLIP OVERWRITES THEM ---
+    if args.save_cif and candidates:
+        suffix = "_unrelaxed" if (args.mlip and not args.no_relax) else ""
+        save_structures_as_cif(candidates, args.composition, args.output_dir, suffix)
+
+    # --- RUN MLIP EVALUATION ---
     if args.mlip and candidates:
         mlip_start = time.time()
         
@@ -336,6 +335,10 @@ def main():
             # Handle None values gracefully
             candidates.sort(key=lambda x: x.get('formation_energy_per_atom') if x.get('formation_energy_per_atom') is not None else 999.0)
 
+            # --- SAVE RELAXED CIFs ---
+            if args.save_cif and not args.no_relax:
+                save_structures_as_cif(candidates, args.composition, args.output_dir, suffix="_relaxed")
+
         print(f"[INFO] MLIP Evaluation finished in {time.time() - mlip_start:.2f}s")
     # --------------------------------
 
@@ -374,9 +377,6 @@ def main():
             print(f"    Volume: {struct.volume:.3f} Å³")
             print()
 
-        if args.save_cif:
-            save_structures_as_cif(candidates, args.composition, args.output_dir)
-            
         # --- SAVE JSON FILE WITH ENERGIES ---
         if args.mlip:
             os.makedirs(args.output_dir, exist_ok=True)
@@ -402,7 +402,6 @@ def main():
             with open(json_path, 'w') as f:
                 json.dump(json_data, f, indent=4)
             print(f"[INFO] MLIP evaluation summary saved to {json_path}")
-        # -----------------------------------------
     else:
         print("No valid candidates generated.")
 

@@ -30,8 +30,8 @@ export MP_START_METHOD=spawn
 echo "start"
 date
 
-python3 test/test_comprehensive.py
-
+# python3 test/test_comprehensive.py
+python3 test/test_surface_alloy.py
 echo "done"
 date
 

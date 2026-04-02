@@ -1,0 +1,41 @@
+[
+    {
+        "rank": 1,
+        "formula": "Fe78Co19Ni19(MoPt)6",
+        "source_id": "doped_from_provided_fe_bcc_001_surface_sqs_3",
+        "parent_formula": "Fe",
+        "method": "Manual Base Doping (Target Size: ~40)",
+        "space_group": "P1",
+        "num_sites": 128,
+        "volume_A3": 2707.413,
+        "formation_energy_per_atom_eV": 0.2315991112026401,
+        "total_energy_per_atom_eV": -7.471985650511742,
+        "total_energy_eV": -956.414163265503
+    },
+    {
+        "rank": 2,
+        "formula": "Fe78Co19Ni19(MoPt)6",
+        "source_id": "doped_from_provided_fe_bcc_001_surface_sqs_1",
+        "parent_formula": "Fe",
+        "method": "Manual Base Doping (Target Size: ~40)",
+        "space_group": "P1",
+        "num_sites": 128,
+        "volume_A3": 2662.893,
+        "formation_energy_per_atom_eV": 0.23439113513296572,
+        "total_energy_per_atom_eV": -7.469193626581417,
+        "total_energy_eV": -956.0567842024213
+    },
+    {
+        "rank": 3,
+        "formula": "Fe78Co19Ni19(MoPt)6",
+        "source_id": "doped_from_provided_fe_bcc_001_surface_sqs_2",
+        "parent_formula": "Fe",
+        "method": "Manual Base Doping (Target Size: ~40)",
+        "space_group": "P1",
+        "num_sites": 128,
+        "volume_A3": 2715.694,
+        "formation_energy_per_atom_eV": 0.24307966316530294,
+        "total_energy_per_atom_eV": -7.4605050985490795,
+        "total_energy_eV": -954.9446526142822
+    }
+]
