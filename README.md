@@ -77,6 +77,53 @@ pip install m3gnet
 
 -----
 
+## Loading the LeMat Database
+
+ProtoCSP requires the LeMat-Bulk dataset for prototype retrieval and structure generation. The database is hosted on HuggingFace and can be downloaded as parquet files for efficient loading.
+
+### Prerequisites
+
+* **Disk Space:** ~3.2GB for the parquet files
+* **Dependencies:** `huggingface_hub` (included in requirements.txt)
+
+### Download Instructions
+
+1. Navigate to the `lemat_database_scripts/` directory:
+```bash
+cd lemat_database_scripts/
+```
+
+2. Run the download script:
+```bash
+python lemat_parquet_download.py
+```
+
+This will download the LeMat-BulkUnique dataset (unique_pbe configuration) and save the parquet files to `./lemat_parquet_files/unique_pbe/`.
+
+### Configuration
+
+ProtoCSP is configured to use the parquet files by default:
+
+* The `--index` parameter in `main.py` defaults to `lemat_parquet_files/unique_pbe/`
+* No additional configuration is needed if you use the default download location
+* To use a custom path, specify it with the `--index` flag:
+```bash
+python main.py SrTiO3 --index /path/to/your/parquet/files
+```
+
+### Verification
+
+To verify the database is loaded correctly, run a simple test:
+
+```bash
+cd ..
+python main.py SrTiO3 --top-k 1 --verbose
+```
+
+If successful, you should see output indicating that ProtoCSP is using parquet lazy-scan mode and retrieving structures from the database.
+
+-----
+
 ## Quick Start
 
 ### Basic Structure Generation

@@ -3,3 +3,4 @@ pandas>=1.5.0
 polars>=1.36.1
 numpy>=1.21.0
 tqdm>=4.64.0
+huggingface_hub>=0.20.0
