@@ -20,6 +20,7 @@ import math
 import random
 import itertools
 import time
+import string
 from typing import Dict, List, Any, Optional, Tuple, Union
 import pandas as pd
 import polars as pl
@@ -37,6 +38,25 @@ except ImportError:
 
 # Increase CSV field size limit
 csv.field_size_limit(10000000)
+
+
+def _pymatgen_to_lemat_anon(anon: str) -> str:
+    """Convert pymatgen anonymized formula to LeMat parquet format.
+
+    pymatgen assigns A,B,C... sorted by count ASCENDING.
+    LeMat assigns A,B,C... sorted by count DESCENDING.
+    Both omit the count when it is 1.
+
+    Examples:
+        ABC2D6 -> A6B2CD
+        AB2    -> A2B
+        A2B3   -> A3B2
+    """
+    parts = re.findall(r'([A-Z])(\d*)', anon)
+    counts = [int(num) if num else 1 for _, num in parts]
+    counts.sort(reverse=True)
+    letters = string.ascii_uppercase
+    return ''.join(f"{letters[i]}{c if c > 1 else ''}" for i, c in enumerate(counts))
 
 
 class ProtoCSP:
@@ -77,9 +97,11 @@ class ProtoCSP:
         # --- 1. Parquet Mode (Polars) ---
         if getattr(self, 'is_parquet_mode', False):
             try:
+                # Convert pymatgen anon format (ascending) to LeMat format (descending)
+                lemat_anon = _pymatgen_to_lemat_anon(anon_formula)
                 # Lazy filter and pull into memory
                 df = self.parquet_lf.filter(
-                    pl.col("chemical_formula_anonymous") == anon_formula
+                    pl.col("chemical_formula_anonymous") == lemat_anon
                 ).collect()
                 
                 entries = []

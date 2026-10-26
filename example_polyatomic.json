@@ -1,0 +1,29 @@
+{
+  "_description": "Example polyatomic ion substitution: NH4+ for Fr dummy atoms",
+  "experiment_name": "Polyatomic_NH4_Substitution",
+  "base_structure": "base_K2NaAlF6.cif",
+  "supercell_dimensions": [2, 2, 2],
+  "site_substitutions": {
+    "K": {
+      "_comment": "A-site: Substitute K with Fr (dummy for NH4+)",
+      "substitution_fraction": [0.0, 0.5, 1.0],
+      "substituents": {"Fr": 1.0}
+    },
+    "Na": {
+      "_comment": "B-site: Keep Na",
+      "substitution_fraction": [0.0],
+      "substituents": {}
+    },
+    "Al": {
+      "_comment": "B-site: Keep Al",
+      "substitution_fraction": [0.0],
+      "substituents": {}
+    },
+    "F": {
+      "_comment": "X-site: Keep F",
+      "substitution_fraction": [0.0],
+      "substituents": {}
+    }
+  },
+  "samples_per_composition": 2
+}

@@ -77,6 +77,53 @@ pip install m3gnet
 
 -----
 
+## Loading the LeMat Database
+
+ProtoCSP requires the LeMat-Bulk dataset for prototype retrieval and structure generation. The database is hosted on HuggingFace and can be downloaded as parquet files for efficient loading.
+
+### Prerequisites
+
+* **Disk Space:** ~3.2GB for the parquet files
+* **Dependencies:** `huggingface_hub` (included in requirements.txt)
+
+### Download Instructions
+
+1. Navigate to the `lemat_database_scripts/` directory:
+```bash
+cd lemat_database_scripts/
+```
+
+2. Run the download script:
+```bash
+python lemat_parquet_download.py
+```
+
+This will download the LeMat-BulkUnique dataset (unique_pbe configuration) and save the parquet files to `./lemat_parquet_files/unique_pbe/`.
+
+### Configuration
+
+ProtoCSP is configured to use the parquet files by default:
+
+* The `--index` parameter in `main.py` defaults to `lemat_parquet_files/unique_pbe/`
+* No additional configuration is needed if you use the default download location
+* To use a custom path, specify it with the `--index` flag:
+```bash
+python main.py SrTiO3 --index /path/to/your/parquet/files
+```
+
+### Verification
+
+To verify the database is loaded correctly, run a simple test:
+
+```bash
+cd ..
+python main.py SrTiO3 --top-k 1 --verbose
+```
+
+If successful, you should see output indicating that ProtoCSP is using parquet lazy-scan mode and retrieving structures from the database.
+
+-----
+
 ## Quick Start
 
 ### Basic Structure Generation
@@ -113,6 +160,70 @@ Relax candidates with an MLIP to find the lowest-energy ordering:
 python main.py La0.5Sr0.5MnO3 --mlip --engine mace --fmax 0.01 --save-cif
 ```
 
+### Fast Tensor Generation Mode (--fast)
+
+For high-throughput screening of **fixed-topology** structures, use the `--fast` flag with a JSON configuration. This bypasses pymatgen overhead and generates batched tensor arrays directly (100+ configs in milliseconds).
+
+**Two substitution models are supported:**
+
+#### 1. Partial Substitution (HEA / Alloys)
+For single-site alloying where the host fraction represents the percentage of sites to substitute.
+
+```bash
+python main.py example_hea_config.json --fast --output-dir ./output
+```
+
+Example config (`example_hea_config.json`):
+```json
+{
+  "experiment_name": "FeCrNiCo_HEA",
+  "base_structure": "Fe_bcc.cif",
+  "supercell_target_atoms": 128,
+  "composition_ranges": {
+    "host": {"Fe": [0.20, 0.50, 0.10]},
+    "substitutional": {"Cr": [0.30, 0.50, 0.10], "Ni": [0.30, 0.50, 0.10], "Co": [0.20, 0.40, 0.10]}
+  },
+  "samples_per_composition": 5
+}
+```
+- `host` fraction = % of total sites to substitute (not final composition)
+- `substitutional` ratios must sum to 1.0 (they fill the substituted sites)
+- Uses **global shuffling** (all sites equivalent)
+
+#### 2. Site-Specific Substitution (Perovskites / Multi-sublattice)
+For structures with multiple Wyckoff positions, where each elemental site substitutes independently.
+
+```bash
+python main.py example_perovskite_sites.json --fast --output-dir ./output
+```
+
+Example config (`example_perovskite_sites.json`):
+```json
+{
+  "experiment_name": "Perovskite_Sublattice_Alloying",
+  "base_structure": "base_K2NaAlF6.cif",
+  "supercell_target_atoms": 160,
+  "site_substitutions": {
+    "K": {"substitution_fraction": [0.0, 0.5, 1.0], "substituents": {"Cs": 0.4, "Rb": 0.3, "Na": 0.3}},
+    "Al": {"substitution_fraction": [0.0, 0.5], "substituents": {"Ti": 0.5, "Mn": 0.5}},
+    "F": {"substitution_fraction": [0.0, 0.2], "substituents": {"Cl": 0.8, "Br": 0.2}}
+  },
+  "samples_per_composition": 5
+}
+```
+- Each site type (K, Al, F) substitutes independently
+- Uses **sublattice-restricted shuffling** (e.g. Cs only on K sites, Ti only on Al sites, etc.)
+
+
+#### Converting NPZ to CIF
+
+The fast mode outputs tensors as NPZ files. Convert to CIF for visualization:
+
+```bash
+python protocsp/tensor_generator.py convert output/tensor_data.npz \
+  --output-dir ./cif --metadata output/tensor_metadata.json --max-structures 10
+```
+
 -----
 
 ## Command-Line Options
@@ -121,11 +232,12 @@ python main.py La0.5Sr0.5MnO3 --mlip --engine mace --fmax 0.01 --save-cif
 
 | Argument | Description | Default |
 |----------|-------------|---------|
-| `composition` | Target chemical composition (required) | - |
+| `composition` | Target chemical composition (required) OR path to JSON config for `--fast` mode | - |
 | `--csv-dir` | Directory containing LeMat CSV files | `../lemat_unique_csv_500_parts` |
 | `--output-dir` | Output directory for generated structures | `./generated_structures` |
 | `--top-k` | Number of candidates to generate | 5 |
 | `--max-bases` | Maximum different parent structures to use | 3 |
+| `--fast` | Use fast tensor generation pipeline (requires JSON config) | - |
 
 ### Generation Options
 

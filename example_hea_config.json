@@ -1,0 +1,22 @@
+{
+  "_description": "High-Entropy Alloy (HEA) composition sweep on BCC Fe structure. We explore how much Fe to substitute and in what ratios, keeping the BCC framework fixed.",
+  "_approach_explanation": "PARTIAL SUBSTITUTION MODEL: In this model, the 'host' fraction represents the PERCENTAGE OF SITES TO SUBSTITUTE, not the final composition. For example, host={Fe: 0.35} with substitutional={Cr: 0.4, Ni: 0.4, Co: 0.2} means: 35% of all Fe sites are substituted. Of those substituted sites, 40% become Cr, 40% become Ni, 20% become Co. The remaining 65% of sites stay as Fe. This explores alloying by partially substituting the host element.",
+  "_workflow": "1) Start with pure BCC Fe (2 atoms/cell). 2) Scale to ~128 atoms. 3) For each substitution level (e.g., 35%, 45%, 55%), calculate how many sites to substitute. 4) Distribute those substituted sites among Cr/Ni/Co according to their ratios. 5) Generate random arrangements of the resulting composition.",
+  "experiment_name": "FeCrNiCo_HEA_Partial_Substitution",
+  "base_structure": "Fe_bcc.cif",
+  "supercell_target_atoms": 128,
+  "composition_ranges": {
+    "host": {
+      "_comment": "Percentage of Fe sites to substitute. 0.35 = 35% of all sites become substitutional",
+      "Fe": [0.20, 0.50, 0.10]
+    },
+    "substitutional": {
+      "_comment": "Ratios among substitutional elements. These must sum to 1.0 (they fill the substituted sites)",
+      "Cr": [0.30, 0.50, 0.10],
+      "Ni": [0.30, 0.50, 0.10],
+      "Co": [0.20, 0.40, 0.10]
+    }
+  },
+  "samples_per_composition": 5,
+  "_note": "Example: For N=150 atoms with Fe=0.35, Cr=0.4, Ni=0.4, Co=0.2: 35% of 150 = 52 sites substituted. These become 21 Cr + 21 Ni + 10 Co. Remaining 98 sites stay as Fe. Total: Fe98Cr21Ni21Co10 = 150 atoms."
+}

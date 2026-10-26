@@ -8,3 +8,8 @@ lemat_formula_indexed/
 lemat_parquet_files/
 
 generated_structures/
+test_perov/
+test_perov2/
+test_polyatomic/
+*.cif
+log_test_protocsp.txt

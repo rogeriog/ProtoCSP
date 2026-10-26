@@ -1,0 +1,46 @@
+{
+  "_description": "Site-specific substitution in double perovskite K2NaAlF6. Each Wyckoff site type can be substituted independently.",
+  "_approach_explanation": "SITE-SPECIFIC SUBSTITUTION: Unlike the HEA model (single site type), perovskites have multiple distinct Wyckoff positions. In K2NaAlF6: K sites (24d), Na sites (4a), Al sites (4b), F sites (24e). Each can be substituted independently. The structure determines how many sites of each type exist.",
+  "_workflow": "1) Parse base structure K2NaAlF6. 2) Identify unique Wyckoff sites (K, Na, Al, F). 3) For each site type, decide substitution fraction and what elements fill substituted positions. 4) Generate compositions by combining substitutions across all site types.",
+  "experiment_name": "DoublePerovskite_SiteSpecific_Substitution",
+  "base_structure": "base_K2NaAlF6.cif",
+  "supercell_target_atoms": 160,
+  "site_substitutions": {
+    "K": {
+      "_comment": "Substitute K sites with other large cations (A-site substitution)",
+      "substitution_fraction": [0.0, 0.5, 1.0],
+      "substituents": {
+        "Cs": 0.4,
+        "Rb": 0.3,
+        "Na": 0.3
+      }
+    },
+    "Na": {
+      "_comment": "Substitute Na sites (other cation position)",
+      "substitution_fraction": [0.0, 1.0],
+      "substituents": {
+        "K": 0.5,
+        "Li": 0.5
+      }
+    },
+    "Al": {
+      "_comment": "Substitute Al sites with other B-site cations",
+      "substitution_fraction": [0.0, 0.5, 1.0],
+      "substituents": {
+        "Ti": 0.5,
+        "Mn": 0.3,
+        "Fe": 0.2
+      }
+    },
+    "F": {
+      "_comment": "Substitute F sites with other halides (X-site)",
+      "substitution_fraction": [0.0, 0.3],
+      "substituents": {
+        "Cl": 0.6,
+        "Br": 0.4
+      }
+    }
+  },
+  "samples_per_composition": 5,
+  "_note": "Each site type (K, Na, Al, F) has its own substitution level. For each level, the substituents fill the substituted sites proportionally. This allows exploring (Cs,Rb)K-Na-Al-F, K-(K,Li)-Ti-F, etc. systematically."
+}

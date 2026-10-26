@@ -1,0 +1,20 @@
+{
+  "_description": "Cation ordering exploration in double perovskite K2NaAlF6. We fix the fluoride framework and explore different K/Na/Al arrangements on the cation sites.",
+  "_approach_explanation": "FIXED COMPOSITION ORDERING: This example is different from the HEA substitution model. Here we keep the EXACT stoichiometry of K2NaAlF6 fixed. The fractions in 'host' represent the FINAL composition, not substitution levels. We use single-value ranges [val, val, 0.01] to fix the composition, then generate random permutations of element positions. This finds the lowest-energy cation ordering for the fixed composition.",
+  "_workflow": "1) Start from K2NaAlF6 (40 atoms). 2) Scale to ~160 atoms. 3) Keep composition FIXED at K:Na:Al:F = 0.33:0.17:0.17:0.33. 4) Generate random shuffles of which specific sites are K vs Na vs Al (F stays fixed). 5) Each shuffle is a different cation arrangement with same overall composition.",
+  "experiment_name": "DoublePerovskite_CationOrdering",
+  "base_structure": "base_K2NaAlF6.cif",
+  "supercell_target_atoms": 160,
+  "composition_ranges": {
+    "host": {
+      "_comment": "FIXED final composition - use single values, not ranges. This is NOT substitution, it's the exact stoichiometry.",
+      "K": [0.33, 0.33, 0.01],
+      "Na": [0.17, 0.17, 0.01],
+      "Al": [0.17, 0.17, 0.01],
+      "F": [0.33, 0.33, 0.01]
+    },
+    "substitutional": {}
+  },
+  "samples_per_composition": 10,
+  "_note": "This example uses FIXED composition ranges [val, val, step] to preserve exact K2NaAlF6 stoichiometry. It explores cation ORDERINGS (arrangements), not substitutions. For substitution/alloying studies, see example_hea_config.json."
+}

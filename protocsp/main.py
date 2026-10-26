@@ -2,18 +2,22 @@
 """
 ProtoCSP Main Script
 
-Usage:
+Usage (Standard Mode):
     python main.py [options] <composition>
 
+Usage (Fast Tensor Mode):
+    python main.py [options] <config.json> --fast
+
 Options:
-    --csv-dir DIR       Directory containing LeMat CSV parts (default: ../lemat_unique_csv_500_parts)
+    --csv-dir DIR       Directory containing LeMat CSV parts (legacy fallback, default: ../lemat_unique_csv_500_parts)
     --output-dir DIR    Directory to save generated structures (default: ./generated_structures)
     --limit LIMIT       Limit number of structures to load for testing (only used if rebuilding index)
     --top-k K           Number of top candidates to generate (default: 5)
     --save-cif          Save generated structures as CIF files
     --verbose           Print detailed progress information
-    --index PATH        Path to library folder (JSONs) OR pickle file (default: lemat_formula_indexed)
-    --force-rebuild     Force rebuilding a pickle index from CSVs (ignored if using folder mode)
+    --index PATH        Path to LeMat parquet files/folder or pickle index (default: lemat_parquet_files/unique_pbe/)
+    --force-rebuild     Force rebuilding a pickle index from CSVs (ignored if using parquet mode)
+    --fast              Use fast tensor generation pipeline (requires JSON config file)
 """
 
 import os
@@ -33,6 +37,7 @@ except ImportError:
     sys.exit(1)
 
 from core import ProtoCSP, build_library_index
+from tensor_generator import TensorGenerator, run_fast_pipeline
 
 
 def save_structures_as_cif(candidates: List[dict], composition: str, output_dir: str, suffix: str = ""):
@@ -200,10 +205,143 @@ def evaluate_candidates_with_mlip(candidates: List[dict], calc, engine: str, do_
             
     return candidates
 
+def run_fast_mode(args) -> None:
+    """
+    Run the fast tensor generation pipeline.
+    
+    This function handles the --fast mode, which uses the TensorGenerator
+    for high-throughput combinatorial structure generation.
+    
+    Args:
+        args: Parsed command line arguments. args.composition should be
+              a path to a JSON configuration file.
+    """
+    import numpy as np
+    from ase.io import write
+    
+    config_path = args.composition
+    
+    if not os.path.exists(config_path):
+        print(f"[ERROR] Config file not found: {config_path}")
+        sys.exit(1)
+    
+    if not config_path.endswith('.json'):
+        print(f"[WARNING] Fast mode expects a JSON config file, got: {config_path}")
+    
+    print("[INFO] Running in FAST TENSOR MODE")
+    print(f"[INFO] Configuration: {config_path}")
+    
+    # Run the tensor generation pipeline
+    start_time = time.time()
+    
+    try:
+        result = run_fast_pipeline(config_path, args.output_dir, save_cif=args.save_cif)
+    except Exception as e:
+        print(f"[ERROR] Fast pipeline failed: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
+    
+    generation_time = time.time() - start_time
+    
+    # Unpack results
+    atomic_numbers = result['atomic_numbers']
+    positions = result['positions']
+    cell = result['cell']
+    metadata = result['metadata']
+    
+    B = atomic_numbers.shape[0]
+    N = atomic_numbers.shape[1] if B > 0 else 0
+    
+    print(f"\n{'=' * 80}")
+    print(f"TENSOR GENERATION COMPLETE ({B} configurations in {generation_time:.2f}s)")
+    print(f"{'=' * 80}")
+    print(f"Batch shape: atomic_numbers={atomic_numbers.shape}, positions={positions.shape}, cell={cell.shape}")
+    
+    # Save raw tensor data
+    os.makedirs(args.output_dir, exist_ok=True)
+    
+    # Save as NPZ for efficient loading
+    npz_path = os.path.join(args.output_dir, "tensor_data.npz")
+    np.savez_compressed(
+        npz_path,
+        atomic_numbers=atomic_numbers,
+        positions=positions,
+        cell=cell
+    )
+    print(f"[INFO] Tensor data saved to {npz_path}")
+    
+    # Save metadata as JSON
+    metadata_path = os.path.join(args.output_dir, "tensor_metadata.json")
+    with open(metadata_path, 'w') as f:
+        json.dump(metadata, f, indent=2)
+    print(f"[INFO] Metadata saved to {metadata_path}")
+    
+    # --- MLIP EVALUATION FOR FAST MODE ---
+    if args.mlip and B > 0:
+        mlip_start = time.time()
+        
+        try:
+            from mlip_utils import initialize_calculator
+        except ImportError as e:
+            print(f"\n[ERROR] Could not import MLIP utilities: {e}")
+            sys.exit(1)
+        
+        print(f"\n[INFO] Initializing {args.engine.upper()} MLIP calculator for batched evaluation...")
+        calc = initialize_calculator(
+            engine=args.engine,
+            model_name=args.model_name,
+            checkpoint_model_path=args.checkpoint_model
+        )
+        
+        if calc is not None:
+            # For fast mode, we evaluate the tensor batches directly
+            # This is where you would add custom batched MLIP evaluation
+            print(f"[INFO] MLIP calculator ready. Batched evaluation should be implemented here.")
+            print(f"[INFO] To evaluate: load {npz_path} and pass tensors to your MLIP.")
+            
+            # Optionally convert first few structures to ASE for single-point evaluation
+            if not args.no_relax:
+                print(f"\n[INFO] Converting first {min(3, B)} structures to ASE for verification...")
+                try:
+                    from ase import Atoms
+                    from pymatgen.core import Element
+                    
+                    for i in range(min(3, B)):
+                        z_array = atomic_numbers[i]
+                        pos_array = positions[i]
+                        cell_array = cell[i]
+                        
+                        symbols = [Element.from_Z(int(Z)).symbol for Z in z_array]
+                        atoms = Atoms(
+                            symbols=symbols,
+                            positions=pos_array,
+                            cell=cell_array,
+                            pbc=True
+                        )
+                        atoms.calc = calc
+                        
+                        energy = atoms.get_potential_energy()
+                        print(f"  [MLIP] Config {i}: E = {energy:.4f} eV ({energy/len(atoms):.4f} eV/atom)")
+                except Exception as e:
+                    print(f"  [WARNING] Verification evaluation failed: {e}")
+        
+        print(f"[INFO] MLIP preparation finished in {time.time() - mlip_start:.2f}s")
+    
+    print(f"\n{'=' * 80}")
+    print("FAST MODE SUMMARY")
+    print(f"{'=' * 80}")
+    print(f"Total configurations: {B}")
+    print(f"Atoms per configuration: {N}")
+    print(f"Generation time: {generation_time:.2f}s")
+    print(f"Output directory: {args.output_dir}")
+    print(f"Tensor file: {npz_path}")
+    print(f"{'=' * 80}\n")
+
 def main():
     parser = argparse.ArgumentParser(description='ProtoCSP')
     parser.add_argument('composition', help='Chemical composition')
-    parser.add_argument('--csv-dir', default='../lemat_unique_csv_500_parts', help='CSV Directory')
+    parser.add_argument('--csv-dir', default='../lemat_unique_csv_500_parts', help='Directory containing LeMat CSV parts (legacy fallback)')
     parser.add_argument('--output-dir', default='./generated_structures', help='Output Directory')
     parser.add_argument('--limit', type=int, default=None)
     parser.add_argument('--top-k', type=int, default=5)
@@ -220,8 +358,9 @@ def main():
 
     parser.add_argument('--save-cif', action='store_true')
     parser.add_argument('--verbose', action='store_true')
-    parser.add_argument('--index', default='lemat_parquet_files/unique_pbe/', help='Library path')
+    parser.add_argument('--index', default='lemat_parquet_files/unique_pbe/', help='Path to LeMat parquet files/folder or pickle index')
     parser.add_argument('--force-rebuild', action='store_true')
+    parser.add_argument('--fast', action='store_true', help='Use fast tensor generation pipeline for fixed-topology scenarios (requires JSON config file instead of composition)')
 
     # --- MLIP ARGUMENTS ---
     parser.add_argument('--mlip', action='store_true', help='Activate MLIP energy evaluation for final candidates')
@@ -231,6 +370,13 @@ def main():
     parser.add_argument('--model-name', type=str, default='medium-omat-0', help='Model name for MACE (default: medium-omat-0)')
     parser.add_argument('--checkpoint-model', type=str, default=None, help='Path to checkpoint file (Required for eSEN/UMA/NEP)')
     args = parser.parse_args()
+
+    # --- FAST MODE ROUTING ---
+    # If --fast flag is set, route to the tensor generation pipeline
+    if args.fast:
+        run_fast_mode(args)
+        return
+    # -------------------------
 
     print("=" * 80)
     print("PROTOCSP: Prototype-based Crystal Structure Prediction")
